@@ -6,7 +6,7 @@ $(document).ready(ev => {
             autoTrigger: true,
             inDuration: 500,
             outDuration: 225,
-            constrainWidth: false, // Does not change width of dropdown to that of the activator
+            constrainWidth: true, // Does not change width of dropdown to that of the activator
             hover: false, // Activate on hover
             gutter: 85, // Spacing from edge
             coverTrigger: false, // Displays dropdown below the button
