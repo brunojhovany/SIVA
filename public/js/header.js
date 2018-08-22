@@ -13,3 +13,4 @@ $(document).ready(function (ev) {
         stopPropagation: false // Stops event propagation
     });
 });
+$(document).ready(function (ev) {});

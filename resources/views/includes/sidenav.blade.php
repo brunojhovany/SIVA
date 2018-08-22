@@ -4,7 +4,7 @@
       <div class="background">
         <img src="https://images.unsplash.com/photo-1503754163129-a02a0c097de0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e7c17eaac9f6de7265bd498663c17cc6&auto=format&fit=crop&w=300&q=80">
       </div>
-      <a href="#user"><img class="circle" src="https://images.unsplash.com/photo-1503754163129-a02a0c097de0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e7c17eaac9f6de7265bd498663c17cc6&auto=format&fit=crop&w=300&q=80"></a>
+      <a href="#user"><img class="circle" src="https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-0.3.5&s=d6aa3148589eba801d466a21c6847255&auto=format&fit=crop&w=750&q=80"></a>
       <a href="#name"><span class="white-text name">{{Auth::user()->name}}</span></a>
       <a href="#email"><span class="white-text email">{{auth::user()->email}}</span></a>
     </div>

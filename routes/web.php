@@ -16,5 +16,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::group(['middleware'=>'auth'],function(){
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/capturarpuntos/unavez','puntosfijos@');
+    Route::get('/capturarpuntos/masdeunavez','puntosfijos@');
+});
 
-Route::get('/home', 'HomeController@index')->name('home');
