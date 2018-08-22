@@ -12,7 +12,9 @@
 </head>
 <body>
     @include('includes.header')
+    @auth
     @include('includes.sidenav')
+    @endauth
     @yield('content')
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/materialize.js') }}"></script>

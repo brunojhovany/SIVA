@@ -1,23 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<img class="materialboxed" width="100%" src="https://images.unsplash.com/photo-1505484128028-7b964df26344?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=faf6b04f5d2218cc7b675ed350f13e3d&auto=format&fit=crop&w=1500&q=80">
 @endsection
