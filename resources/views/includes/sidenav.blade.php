@@ -40,8 +40,8 @@
         <a class="collapsible-header">Capturar puntos fijos<i class="material-icons">arrow_drop_down</i></a>
         <div class="collapsible-body">
           <ul>
-            <li><a href="#!">Una vez</a></li>
-            <li><a href="#!">Mas deuna vez</a></li>
+            <li><a id="onlyone" href="">Una vez</a></li>
+            <li><a id="morethanonce" href="">Mas deuna vez</a></li>
           </ul>
         </div>
       </li>

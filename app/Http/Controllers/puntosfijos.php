@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 class puntosfijos extends Controller
 {
     public function solounaves(){
-        return view('',[
-            
+        return response()->json([
+            'html' => view('puntosfijos.onlyone',compact(''))->render()
         ]);
     }
 }

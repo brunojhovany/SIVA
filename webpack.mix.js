@@ -21,4 +21,5 @@ mix.js('resources/assets/js/app.js', 'public/js')
 .copy('node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff', 'public/fonts/MaterialIcons-Regular.woff')
 .copy('node_modules/material-design-icons/iconfont/MaterialIcons-Regular.ttf', 'public/fonts/MaterialIcons-Regular.ttf')
 .copy('node_modules/sweetalert2/dist/sweetalert2.min.js', 'public/js/sweetalert.js')
+.copy('node_modules/sweetalert2/dist/sweetalert2.css', 'public/css/sweetalert.css')
 .babel(['resources/js/header.js','resources/js/sidenav.js'],'public/js/header.js');
