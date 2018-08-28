@@ -1,7 +1,7 @@
 @extends('layouts.app') @section('content')
 <div class="container">
     <h4>Comisión para la protección contra riesgos sanitarios</h4>
-    <form action="" method="POST" id="onlyOneForm">
+    <form method="POST" id="onlyOneForm">
          @csrf
         <div class="row">
             <div class="input-field col s12 m6">
@@ -44,7 +44,7 @@
             <div class="input-field col s5 m2">
                 <p>
                     <label>
-                        <input name="Servicio" type="checkbox" class="filled-in" required/>
+                        <input name="Servicio" type="checkbox" class="filled-in"/>
                         <span>Sin servicio</span>
                     </label>
                 </p>
@@ -52,14 +52,14 @@
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <input id="causas" type="text" name="Causas" class="validate">
+                <input id="causas" type="text" name="Causas" class="validate" required>
                 <label class="active" for="causas">Causas</label>
             </div>
         </div>
         
         <div class="row">
             <div class="input-field col s12">
-                <input id="accion" type="text" name="Acciones" class="validate">
+                <input id="accion" type="text" name="Acciones" class="validate" required>
                 <label class="active" for="accion">Acciones Ejecutadas</label>
             </div>
             <div class="input-field col s12">

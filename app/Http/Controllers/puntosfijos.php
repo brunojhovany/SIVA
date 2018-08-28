@@ -12,7 +12,6 @@ class puntosfijos extends Controller
         $levelUSR = Auth::user()->profile;
         $lv = userlevels::findOrFail($levelUSR);
         $query = DB::table('municipio')->select('idmunicipio','nombreM')->get();
-        $Municipios = DB::table('municipio')->select('idmunicipio','nombreM')->get();
         return view('puntosfijos.onlyone',[
             'level' => $lv,
             'Municipios' => []
@@ -27,13 +26,36 @@ class puntosfijos extends Controller
     public function Localidades(Request $request){
         $query = DB::table('localidades')->select('idlocalidades','nombreL')->where('idmunicipio','=',"$request->idmunicipio")->get();
         return response()->json([
-            'Municipios' => view('selects.localidades',compact('query'))->render()
+            'Localidades' => view('selects.localidades',compact('query'))->render()
         ]);
     }
     public function Direccion(Request $request){
-        $query = DB::table('localidades')->select('idlocalidades','nombreL')->where('idmunicipio','=',"$request->idmunicipio")->get();
+        $query = DB::table('registro')->select('idregistro','folio','domicilio')->where('idlocalidades','=',"$request->idlocalidades")->where('status','=','0')->get();
         return response()->json([
-            'Municipios' => view('selects.direccion',compact('query'))->render()
+            'Direcciones' => view('selects.direccion',compact('query'))->render()
         ]);
+    }
+    public function SaveSolounavez(Request $request){
+        // dd($request->all());
+        $update=[
+            'fecha' => $request->Fecha,
+            'hora' => $request->Hora,
+            'valor' => $request->Valor,
+            'sin_servicio' => $request->Servicio,
+            'causas' => $request->Causas,
+            'acciones' => $request->Acciones,
+            'muestra' => $request->Bacteriologico,
+            'user_id' => Auth::user()->id,
+            'status' => 1
+        ];
+        if(DB::table('registro')->where('idregistro',$request->Direccion)->update($update)){
+            return response()->json([
+                'message' => 'Se guardó correctamente'
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'No hay nada que actualizar'
+            ]);
+        }
     }
 }

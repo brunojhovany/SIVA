@@ -22,5 +22,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/capturarpuntos/masdeunavez','puntosfijos@morethanonce');
     Route::get('/capturarpuntos/api/municipio','puntosfijos@Municipios');
     Route::post('/capturarpuntos/api/localidad','puntosfijos@Localidades');
+    Route::post('/capturarpuntos/api/direccion','puntosfijos@Direccion');
+    Route::post('/capturarpuntos/api/unavez','puntosfijos@SaveSolounavez');
 });
 
