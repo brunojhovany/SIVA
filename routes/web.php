@@ -26,3 +26,11 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('/capturarpuntos/api/unavez','puntosfijos@SaveSolounavez');
 });
 
+# Admin routes
+Route::group(['middleware'=>'auth'],function(){
+    Route::get('/admin/configuracion','adminController@Index');
+    Route::get('/admin/configuracion/admonusers','adminController@AdmonUsers');
+    Route::get('/admin/configuracion/admonnotifictions','adminController@AdmonNotifictions');
+    Route::get('/admin/configuracion/admonguides','adminController@AdmonGuides');
+    Route::get('/admin/configuracion/admonregister','adminController@AdmonRegister');
+});
