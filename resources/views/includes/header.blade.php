@@ -4,8 +4,8 @@
       @auth
       <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
       @endauth
-      <a href="#!" class="brand-logo hide-on-med-and-down">{{ config('app.name') }}</a>
-      <a href="#!" class="brand-logo hide-on-large-only">{{ config('app.name') }}</a>
+      <a href="/home" class="brand-logo hide-on-med-and-down">{{ config('app.name') }}</a>
+      <a href="/home" class="brand-logo hide-on-large-only">{{ config('app.name') }}</a>
       <ul class="right hide-on-med-and-down">
         @guest
         <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>

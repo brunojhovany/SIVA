@@ -13,15 +13,7 @@ $(document).ready(function (ev) {
         stopPropagation: false // Stops event propagation
     });
 });
-$(document).ready(function (ev) {
-    $('#onlyone').click(function (ev) {
-        ev.preventDefault();
-        getView('/capturarpuntos/unavez');
-    });
-    $('#morethanonce').click(function (ev) {
-        ev.preventDefault();
-    });
-});
+$(document).ready(function (ev) {});
 
 function getView(url) {
     $.ajax({

@@ -1,12 +1,5 @@
 $(document).ready(ev=>{
-    $('#onlyone').click(ev=>{
-        ev.preventDefault();
-        getView('/capturarpuntos/unavez');
-    });
-    $('#morethanonce').click(ev => {
-        ev.preventDefault();
-
-    });
+    
 });
 
 function getView(url) {
