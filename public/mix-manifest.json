@@ -12,5 +12,6 @@
     "/css/sweetalert.css": "/css/sweetalert.css",
     "/js/header.js": "/js/header.js",
     "/js/onlyone.js": "/js/onlyone.js",
-    "/js/notificationsform.js": "/js/notificationsform.js"
+    "/js/notificationsform.js": "/js/notificationsform.js",
+    "/js/pre_register.js": "/js/pre_register.js"
 }

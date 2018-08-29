@@ -35,4 +35,5 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/admin/configuracion/admonguides','adminController@AdmonGuides');
     Route::get('/admin/configuracion/admonregister','adminController@AdmonRegister');
     Route::get('/admin/configuracion/api/alerts','adminController@Notifications');
+    Route::post('/admin/configuracion/api/admonregistersave','adminController@AdmonRegisterSave');
 });
