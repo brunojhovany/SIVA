@@ -1,4 +1,9 @@
 M.AutoInit();
+$.ajaxSetup({
+    headers: {
+        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+    }
+});
 $(document).ready(ev => {
     $('.sidenav').sidenav();
     $(".dropdown-trigger").dropdown(
@@ -14,4 +19,24 @@ $(document).ready(ev => {
             stopPropagation: false // Stops event propagation
         }
     );
+    $('#notificationsbuttons').click(ev =>{
+        $.ajax({
+            url:'/admin/configuracion/api/alerts',
+            type:'get'
+        })
+        .then(data =>{
+            swal(
+                `${data.message}`,
+                    `${data.messageServer}`,
+                    'info'
+            )
+        })
+        .fail(error =>{
+            swal(
+                'Error!',
+                    `${error.statusText}`,
+                    'error'
+            )
+        });
+    });
 });

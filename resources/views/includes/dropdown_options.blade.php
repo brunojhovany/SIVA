@@ -12,7 +12,7 @@
 
 <ul id="dropdownMenu" class="dropdown-content">
   <li>
-    <a href="#!" style="color:#01579b">
+    <a href="#!" style="color:#01579b" id="notificationsbuttons">
       <i class="material-icons">notifications</i>Notificaciones
       <span class="badge">1</span>
     </a>
