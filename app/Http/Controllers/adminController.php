@@ -5,6 +5,7 @@ use DB;
 use App\userlevels;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\avisos_informativos;
 
 class adminController extends Controller
 {
@@ -34,6 +35,7 @@ class adminController extends Controller
         $levelUSR = Auth::user()->profile;
         $lv = userlevels::findOrFail($levelUSR);
         if (Auth::user()->profile  == 1){
+
             return view('configuracion.notifications',[
                 'level' => $lv
             ]);
@@ -62,5 +64,29 @@ class adminController extends Controller
         }
         else 
         abort(403,'Forbidden');
+    }
+
+    public function store_notifications(Request $request) {
+        $newAviso = new avisos_informativos;
+        $newAviso->descripcion_aviso = $request->descripcion_aviso;
+        if($newAviso->save()){
+            return response()->json([
+                'message'=>'saved!'
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'failed to save'
+            ]);
+        }
+        
+    }
+
+    public function Notifications(){
+        $alerts = avisos_informativos::select('idavisos','descripcion_aviso')->orderBy('idavisos','desc')->first();
+        $alerts = $alerts->descripcion_aviso;
+        return response()->json([
+            'message' => $alerts,
+            'messageServer' => 'Mensaje del Administrador'
+        ],200);
     }
 }

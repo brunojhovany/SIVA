@@ -11,5 +11,6 @@
     "/js/sweetalert.js": "/js/sweetalert.js",
     "/css/sweetalert.css": "/css/sweetalert.css",
     "/js/header.js": "/js/header.js",
-    "/js/onlyone.js": "/js/onlyone.js"
+    "/js/onlyone.js": "/js/onlyone.js",
+    "/js/notificationsform.js": "/js/notificationsform.js"
 }

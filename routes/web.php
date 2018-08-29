@@ -24,6 +24,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('/capturarpuntos/api/localidad','puntosfijos@Localidades');
     Route::post('/capturarpuntos/api/direccion','puntosfijos@Direccion');
     Route::post('/capturarpuntos/api/unavez','puntosfijos@SaveSolounavez');
+    Route::post('/capturarpuntos/api/admon-notifications','adminController@store_notifications');
 });
 
 # Admin routes
@@ -33,4 +34,5 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/admin/configuracion/admonnotifictions','adminController@AdmonNotifictions');
     Route::get('/admin/configuracion/admonguides','adminController@AdmonGuides');
     Route::get('/admin/configuracion/admonregister','adminController@AdmonRegister');
+    Route::get('/admin/configuracion/api/alerts','adminController@Notifications');
 });
