@@ -16,8 +16,9 @@
       <i class="material-icons">notifications</i>Notificaciones
       <span class="badge">1</span>
     </a>
-  </li>
+  </li> 
   <li class="divider"></li>
+  <li><a href="/admin/configuracion" style="color:#01579b"><i class="material-icons">settings</i>Configuración</a></li>
   <li>
     <a href="#!" style="color:#01579b">
       <i class="material-icons">info_outline</i>Acerca de</a>

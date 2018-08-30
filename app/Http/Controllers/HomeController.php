@@ -27,11 +27,8 @@ class HomeController extends Controller
     {  
         $levelUSR = Auth::user()->profile;
         $lv = userlevels::findOrFail($levelUSR);
-        if (Auth::user()->profile  == 1){
         return view('home',[
             'level' =>  $lv
-        ]);}
-        else 
-        abort(403,'Forbidden');
+        ]);
     }
 }

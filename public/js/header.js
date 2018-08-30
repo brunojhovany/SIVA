@@ -18,17 +18,24 @@ $(document).ready(function (ev) {
         stopPropagation: false // Stops event propagation
     });
     $('#notificationsbuttons').click(function (ev) {
-        $.ajax({
-            url: '/admin/configuracion/api/alerts',
-            type: 'get'
-        }).then(function (data) {
-            swal("" + data.message, "" + data.messageServer, 'info');
-        }).fail(function (error) {
-            swal('Error!', "" + error.statusText, 'error');
-        });
+        notifications();
+    });
+
+    $("#notificationsbtnsidebar").click(function (ev) {
+        notifications();
     });
 });
 
+function notifications() {
+    $.ajax({
+        url: '/admin/configuracion/api/alerts',
+        type: 'get'
+    }).then(function (data) {
+        swal("" + data.message, "" + data.messageServer, 'info');
+    }).fail(function (error) {
+        swal('Error!', "" + error.statusText, 'error');
+    });
+}
 $(document).ready(function (ev) {});
 
 function getView(url) {

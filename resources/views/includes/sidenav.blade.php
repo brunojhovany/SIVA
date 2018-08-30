@@ -10,7 +10,7 @@
     </div>
   </li>
   <li class="hide-on-large-only">
-    <a href="#!" style="color:#01579b">
+    <a href="#!" style="color:#01579b" id="notificationsbtnsidebar">
       <i class="material-icons">notifications</i>Notificaciones
       <span class="badge">1</span>
     </a>
@@ -67,7 +67,7 @@
     <div class="divider"></div>
   </li>
   <li><a href="#!"><i class="material-icons">history</i>Historial</a></li>
-  <li><a href="/admin/configuracion"><i class="material-icons">settings</i>Configuración</a></li>
+  <li class="hide-on-large-only"><a href="/admin/configuracion"><i class="material-icons">settings</i>Configuración</a></li>
   <li class="hide-on-large-only">
     <a href="#!" style="color:#01579b">
       <i class="material-icons">info_outline</i>Acerca de</a>

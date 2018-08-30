@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use DB;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -26,4 +26,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    public function level (){
+        return $this->hasOne('App\userlevels','id');
+    }
+    public function UsersDescription (){
+        $selectRaw = "U.id,U.name,U.email,UL.level,U.jurisdiccion";
+        $query = DB::table(DB::raw('users as U'));
+        $query->selectRaw("$selectRaw");
+        $query->leftJoin(DB::raw('(SELECT id,name AS level from userlevels) as UL'),'UL.id','=','U.profile');
+        return $query->get();
+    }
 }
