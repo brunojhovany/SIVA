@@ -13,5 +13,6 @@
     "/js/header.js": "/js/header.js",
     "/js/onlyone.js": "/js/onlyone.js",
     "/js/notificationsform.js": "/js/notificationsform.js",
-    "/js/pre_register.js": "/js/pre_register.js"
+    "/js/pre_register.js": "/js/pre_register.js",
+    "/js/admon_users.js": "/js/admon_users.js"
 }

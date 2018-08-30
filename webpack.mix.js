@@ -25,4 +25,5 @@ mix.js('resources/assets/js/app.js', 'public/js')
 .babel(['resources/js/header.js','resources/js/sidenav.js'],'public/js/header.js')
 .babel('resources/js/onlyone.js','public/js/onlyone.js')
 .babel('resources/js/notificationsform.js','public/js/notificationsform.js')
-.babel('resources/js/pre_register.js', 'public/js/pre_register.js');
+.babel('resources/js/pre_register.js', 'public/js/pre_register.js')
+.babel('resources/js/admon_users.js', 'public/js/admon_users.js');

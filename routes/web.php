@@ -16,7 +16,6 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::group(['middleware'=>'auth'],function(){
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/capturarpuntos/unavez','puntosfijos@solounaves');
     Route::get('/capturarpuntos/masdeunavez','puntosfijos@morethanonce');
@@ -25,10 +24,8 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('/capturarpuntos/api/direccion','puntosfijos@Direccion');
     Route::post('/capturarpuntos/api/unavez','puntosfijos@SaveSolounavez');
     Route::post('/capturarpuntos/api/admon-notifications','adminController@store_notifications');
-});
 
-# Admin routes
-Route::group(['middleware'=>'auth'],function(){
+
     Route::get('/admin/configuracion','adminController@Index');
     Route::get('/admin/configuracion/admonusers','adminController@AdmonUsers');
     Route::get('/admin/configuracion/admonnotifictions','adminController@AdmonNotifictions');
@@ -36,4 +33,5 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/admin/configuracion/admonregister','adminController@AdmonRegister');
     Route::get('/admin/configuracion/api/alerts','adminController@Notifications');
     Route::post('/admin/configuracion/api/admonregistersave','adminController@AdmonRegisterSave');
-});
+    Route::post('/admin/configuracion/api/admonusers/getusertoedit','adminController@EditUserForm');
+    Route::post('/admin/configuracion/api/admonusers/updateusers','adminController@UpdateUsers');

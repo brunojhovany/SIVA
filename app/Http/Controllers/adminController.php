@@ -5,7 +5,9 @@ use DB;
 use App\User;
 use App\registro;
 use App\userlevels;
+use App\jurisdiccion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\avisos_informativos;
 
@@ -37,7 +39,31 @@ class adminController extends Controller
         abort(403,'Forbidden');
     }
 
-    public function AdmonUsersNew(Request $request) {}
+    public function EditUserForm(Request $request){
+        $user = User::find($request->usuario);
+        $level = $request->level;
+        $usrlevels = userlevels::all();
+        $jurisdicciones = jurisdiccion::all();
+        return view('modals.admonusermodal',compact('user','level','usrlevels','jurisdicciones'))->render();
+    }
+
+    public function UpdateUsers (Request $request){
+        $userToUpdate = User::find($request->userId);
+        $userToUpdate->name = $request->Name;
+        $userToUpdate->password = Hash::make($request->Password);
+        $request->has('UserTipe')?$userToUpdate->profile = $request->UserTipe:'';
+        $request->has('Jurisdiccion')?$userToUpdate->jurisdiccion = $request->Jurisdiccion :'';
+        if($userToUpdate->save()){
+            return response()->json([
+                'message' => 'Usuario actualizado.'
+            ]);
+        }
+        else{
+            return response()->json([
+                'message' => 'No hay nada que actualizar'
+            ]);
+        }
+    }
 
 
     public function AdmonNotifictions(){

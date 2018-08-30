@@ -20,10 +20,12 @@ $(document).ready(ev => {
         }
     );
     $('#notificationsbuttons').click(ev =>{
+        ev.preventDefault();
         notifications();
     });
 
     $("#notificationsbtnsidebar").click(ev=>{
+        ev.preventDefault();
         notifications();
     });
 });

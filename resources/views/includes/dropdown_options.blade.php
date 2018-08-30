@@ -12,7 +12,7 @@
 
 <ul id="dropdownMenu" class="dropdown-content">
   <li>
-    <a href="#!" style="color:#01579b" id="notificationsbuttons">
+    <a href="" style="color:#01579b" id="notificationsbuttons">
       <i class="material-icons">notifications</i>Notificaciones
       <span class="badge">1</span>
     </a>
@@ -25,7 +25,7 @@
   </li>
   <li>
     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="color:#01579b">
-      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+      <form id="" action="{{ route('logout') }}" method="POST" style="display: none;">
         @csrf
       </form>
       <i class="material-icons">exit_to_app</i>Salir</a>
