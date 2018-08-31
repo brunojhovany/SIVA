@@ -5,9 +5,9 @@
     </a>
 </li>
 <li>
-    <a class="dropdown-trigger" href="#!" data-target="dropdownMenu">{{Auth::user()->name}} &nbsp;<strong style='color:gray'>{{$level->name}}</strong>
+    <a class="dropdown-trigger" href="#!" data-target="dropdownMenu">{{ Auth::user()->name }} &nbsp;<strong style='color:gray'>{{$level->name}}</strong>
         <i class="material-icons right">arrow_drop_down</i>
-    </a>
+    </a> 
 </li>
 
 <ul id="dropdownMenu" class="dropdown-content">
