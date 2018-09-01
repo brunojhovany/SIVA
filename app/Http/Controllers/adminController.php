@@ -7,6 +7,7 @@ use App\userlevels;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\avisos_informativos;
+use App\tbl_documentos;
 
 class adminController extends Controller
 {
@@ -47,9 +48,11 @@ class adminController extends Controller
     public function AdmonGuides(){
         $levelUSR = Auth::user()->profile;
         $lv = userlevels::findOrFail($levelUSR);
+        $newFile = tbl_documentos::orderBy('nombre_archivo','asc')->get();
         if (Auth::user()->profile  == 1){
             return view('configuracion.guides',[
-                'level' => $lv
+                'level' => $lv,
+                'newFiles' => $newFile
             ]);
         }
         else 
@@ -120,5 +123,63 @@ class adminController extends Controller
         }
         else 
         abort(403,'Forbidden: Lo sentimos, usted no tiene permisos para usar esto');
+    }
+
+    public function Upfiles() {
+        //$newFile = new tbl_documentos;
+        $levelUSR = Auth::user()->profile;
+        $lv = userlevels::findOrFail($levelUSR);
+        if (Auth::user()->profile  == 1){
+            return view('configuracion.up_file_register',[
+                'level' => $lv
+            ]);
+        }
+        else 
+        abort(403,'Forbidden');
+    }
+
+    public function store_files(Request $request) {
+        Auth::user()->profile ==1?:abort(403, 'Permiso denegado');
+        if($request->hasFile('archivo')) {
+            $file = $request->file('archivo');
+            $name = time().$file->getClientOriginalName();
+            $file->move(public_path().'/storage/', $name);
+        }
+        $newFile = new tbl_documentos;
+        $newFile->titulo = $request->titulo;
+        $newFile->descripcion = $request->descripcion;
+        $newFile->nombre_archivo = $name;
+        if($newFile->save()){
+            return response()->json([
+                'message'=>'saved!'
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'failed to save'
+            ]);
+        }
+        
+    }
+    public function DownloadGuide($filename){
+        $pathToFile = public_path().'/storage/'.$filename;
+        // dd($pathToFile);
+        return response()->download($pathToFile);
+    }
+
+    public function DeleteGuide($idfile, $filename) {
+        $file_path = public_path().'/storage/'.$filename;
+        if(file_exists($file_path)){
+            \File::delete($file_path);
+            if(tbl_documentos::where('id_documento','=',"$idfile")->delete()){
+            return response()->json([
+                'message'=>'Erased file!'
+            ]);
+            }
+        }else{
+            dd('El archivo no existe.');
+          }
+        
+        return back()->withInput();
+    
     }
 }

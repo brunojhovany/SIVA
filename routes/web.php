@@ -35,5 +35,9 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/admin/configuracion/admonguides','adminController@AdmonGuides');
     Route::get('/admin/configuracion/admonregister','adminController@AdmonRegister');
     Route::get('/admin/configuracion/api/alerts','adminController@Notifications');
+    Route::get('/admin/configuracion/admonguides/upfile','adminController@Upfiles');
+    Route::post('/admin/configuracion/api/files-admon','adminController@store_files');
     Route::post('/admin/configuracion/api/admonregistersave','adminController@AdmonRegisterSave');
+    Route::get('guides/download/{filename}','adminController@DownloadGuide');
+    Route::get('guides/delete/{idfile}/{filename}','adminController@DeleteGuide');
 });
