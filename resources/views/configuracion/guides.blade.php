@@ -19,7 +19,7 @@
 								<td>{{ $newFile->descripcion }}</td>
 								<td>{{ $newFile->nombre_archivo }}</td>
 								<td><a href="/guides/download/{{$newFile->nombre_archivo}}"><i class="material-icons">file_download</i></a></td>
-								<td><a href="guides/delete/{{$newFile->nombre_archivo}}"><i class="material-icons">delete</i></a></td>
+								<td><a href="/guides/delete/{{$newFile->id_documento}}/{{$newFile->nombre_archivo}}"><i class="material-icons">delete</i></a></td>
 							</tr>
 					@endforeach
 				</tbody>

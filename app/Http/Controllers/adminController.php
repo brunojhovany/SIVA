@@ -174,10 +174,12 @@ class adminController extends Controller
             return response()->json([
                 'message'=>'Erased file!'
             ]);
-        }
-          }else{
+            }
+        }else{
             dd('El archivo no existe.');
           }
-          return back()->withInput();
+        
+        return back()->withInput();
+    
     }
 }
