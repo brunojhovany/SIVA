@@ -14,5 +14,6 @@
     "/js/onlyone.js": "/js/onlyone.js",
     "/js/notificationsform.js": "/js/notificationsform.js",
     "/js/pre_register.js": "/js/pre_register.js",
-    "/js/upfile_form.js": "/js/upfile_form.js"
+    "/js/upfile_form.js": "/js/upfile_form.js",
+    "/js/delete_handbooks.js": "/js/delete_handbooks.js"
 }

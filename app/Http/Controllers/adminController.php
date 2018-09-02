@@ -165,11 +165,11 @@ class adminController extends Controller
         $newFile->nombre_archivo = $name;
         if($newFile->save()){
             return response()->json([
-                'message'=>'saved!'
+                'message'=>'El archivo se ha guardado correctamente!'
             ]);
         }else{
             return response()->json([
-                'message' => 'failed to save'
+                'message' => 'El archivo no se ha podido guardar!'
             ]);
         }
         
@@ -186,14 +186,15 @@ class adminController extends Controller
             \File::delete($file_path);
             if(tbl_documentos::where('id_documento','=',"$idfile")->delete()){
             return response()->json([
-                'message'=>'Erased file!'
+                'message'=>'El archivo se ha borrado correctamente!'
             ]);
             }
         }else{
             dd('El archivo no existe.');
           }
         
-        return back()->withInput();
+        //return back()->withInput();
+        
     
     }
 }

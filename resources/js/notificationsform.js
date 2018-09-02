@@ -24,12 +24,13 @@ $(document).ready(ev=>{
                     'success'
                 )
                 document.getElementById("notificationsform").reset();
+                location.reload();
             },
             error: function(data) {
                 swal({
                     type: "error",
                     title: "Oops...",
-                    text: `Something went wrong! ${
+                    text: `El archivo no se ha podido subir! ${
                         error.responseJSON.message
                         }`
                 });

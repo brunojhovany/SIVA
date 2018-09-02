@@ -5,6 +5,9 @@ $.ajaxSetup({
 				"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
 		}
 });
+function redirectTo() {
+		document.location = "/admin/configuracion/admonguides";
+}
 
 $(document).ready(function (ev) {
 		$("#up_file").on("submit", function (ev) {
@@ -20,6 +23,7 @@ $(document).ready(function (ev) {
 						success: function success(data) {
 								swal('Buen trabajo!', '' + data.message, 'success');
 								document.getElementById("up_file").reset();
+								setTimeout("redirectTo()", 3000);
 						},
 						error: function (_error) {
 								function error(_x) {
@@ -35,7 +39,7 @@ $(document).ready(function (ev) {
 								swal({
 										type: "error",
 										title: "Oops...",
-										text: 'Something went wrong! ' + error.responseJSON.message
+										text: 'Algo sali\xF3 mal! ' + error.responseJSON.message
 								});
 						})
 				});

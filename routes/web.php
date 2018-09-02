@@ -40,5 +40,5 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('/admin/configuracion/api/files-admon','adminController@store_files');
     Route::post('/admin/configuracion/api/admonregistersave','adminController@AdmonRegisterSave');
     Route::get('guides/download/{filename}','adminController@DownloadGuide');
-    Route::get('guides/delete/{idfile}/{filename}','adminController@DeleteGuide');
+    Route::delete('guides/delete/{idfile}/{filename}','adminController@DeleteGuide');
 });

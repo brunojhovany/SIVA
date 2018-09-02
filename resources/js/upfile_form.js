@@ -5,6 +5,9 @@ $.ajaxSetup({
         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
     }
 });
+function redirectTo() {
+	document.location = "/admin/configuracion/admonguides"
+}
 
 $(document).ready(ev=>{
 	$("#up_file").on("submit", function(ev) {
@@ -24,12 +27,14 @@ $(document).ready(ev=>{
 									'success'
 							)
 							document.getElementById("up_file").reset();
+							setTimeout("redirectTo()", 3000);
+							
 					},
 					error: function(data) {
 							swal({
 									type: "error",
 									title: "Oops...",
-									text: `Something went wrong! ${
+									text: `Algo salió mal! ${
 											error.responseJSON.message
 											}`
 							});
