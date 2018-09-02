@@ -26,7 +26,6 @@ class adminController extends Controller
     }
     public function AdmonUsers(){
         $usr = new User;
-        // dd($usr->UsersDescription());
         $levelUSR = Auth::user()->profile;
         $lv = userlevels::findOrFail($levelUSR);
         if (Auth::user()->profile  == 1){
@@ -61,6 +60,18 @@ class adminController extends Controller
         else{
             return response()->json([
                 'message' => 'No hay nada que actualizar'
+            ]);
+        }
+    }
+    public function DeleteUsers(Request $request){
+        if(User::find($request->idUser)->delete()){
+            return response()->json([
+                'message' => 'usurio elíminado'
+            ]);
+        }
+        else{
+            return response()->json([
+                'message' => 'Ocurrió un error al eliminar al usuario'
             ]);
         }
     }
