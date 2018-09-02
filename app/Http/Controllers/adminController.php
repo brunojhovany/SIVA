@@ -125,6 +125,20 @@ class adminController extends Controller
         abort(403,'Forbidden: Lo sentimos, usted no tiene permisos para usar esto');
     }
 
+    public function ListFiles() {
+        $levelUSR = Auth::user()->profile;
+        $lv = userlevels::findOrFail($levelUSR);
+        $newFile = tbl_documentos::orderBy('nombre_archivo','asc')->get();
+        if (Auth::user()->profile  == (1 || 2 || 3)){
+            return view('configuracion.show_manual',[
+                'level' => $lv,
+                'newFiles' => $newFile
+            ]);
+        }
+        else 
+        abort(403,'Forbidden');
+    }
+
     public function Upfiles() {
         //$newFile = new tbl_documentos;
         $levelUSR = Auth::user()->profile;

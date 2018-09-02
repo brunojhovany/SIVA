@@ -25,6 +25,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('/capturarpuntos/api/direccion','puntosfijos@Direccion');
     Route::post('/capturarpuntos/api/unavez','puntosfijos@SaveSolounavez');
     Route::post('/capturarpuntos/api/admon-notifications','adminController@store_notifications');
+    Route::get('configuracion/lista-manuales','adminController@ListFiles');
 });
 
 # Admin routes

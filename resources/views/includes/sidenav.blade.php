@@ -66,6 +66,7 @@
   <li>
     <div class="divider"></div>
   </li>
+  <li><a href="/configuracion/lista-manuales"><i class="material-icons">class</i>Manuales</a></li>
   <li><a href="#!"><i class="material-icons">history</i>Historial</a></li>
   <li><a href="/admin/configuracion"><i class="material-icons">settings</i>Configuración</a></li>
   <li class="hide-on-large-only">
