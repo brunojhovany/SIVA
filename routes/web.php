@@ -27,7 +27,7 @@ Auth::routes();
         Route::post('/capturarpuntos/api/admon-notifications','adminController@store_notifications');
         Route::get('configuracion/lista-manuales', 'adminController@ListFiles');
 
-        
+
         Route::get('/admin/configuracion', 'adminController@Index');
         Route::get('/admin/configuracion/admonusers', 'adminController@AdmonUsers');
         Route::get('/admin/configuracion/admonnotifictions', 'adminController@AdmonNotifictions');
@@ -44,5 +44,5 @@ Auth::routes();
         Route::post('/admin/configuracion/api/files-admon','adminController@store_files');
         Route::post('/admin/configuracion/api/admonregistersave','adminController@AdmonRegisterSave');
         Route::get('guides/download/{filename}','adminController@DownloadGuide');
-        Route::get('guides/delete/{idfile}/{filename}','adminController@DeleteGuide');
+        Route::delete('guides/delete/{idfile}/{filename}','adminController@DeleteGuide');
     });
