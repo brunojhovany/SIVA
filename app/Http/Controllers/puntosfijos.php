@@ -36,7 +36,6 @@ class puntosfijos extends Controller
         ]);
     }
     public function SaveSolounavez(Request $request){
-        // dd($request->all());
         $update=[
             'fecha' => $request->Fecha,
             'hora' => $request->Hora,
@@ -57,5 +56,9 @@ class puntosfijos extends Controller
                 'message' => 'No hay nada que actualizar'
             ]);
         }
+    }
+
+    public function MoreThanOnce(Request $request){
+        return view('');
     }
 }

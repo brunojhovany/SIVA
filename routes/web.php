@@ -19,7 +19,7 @@ Auth::routes();
     Route::group(['middleware'=>'auth'],function(){
         Route::get('/home', 'HomeController@index')->name('home');
         Route::get('/capturarpuntos/unavez','puntosfijos@solounaves');
-        Route::get('/capturarpuntos/masdeunavez','puntosfijos@morethanonce');
+        Route::get('/capturarpuntos/masdeunavez','puntosfijos@MoreThanOnce');
         Route::get('/capturarpuntos/api/municipio','puntosfijos@Municipios');
         Route::post('/capturarpuntos/api/localidad','puntosfijos@Localidades');
         Route::post('/capturarpuntos/api/direccion','puntosfijos@Direccion');

@@ -41,7 +41,7 @@
         <div class="collapsible-body">
           <ul>
             <li><a id="onlyone" href="/capturarpuntos/unavez">Una vez</a></li>
-            <li><a id="morethanonce" href="">Mas deuna vez</a></li>
+            <li><a id="morethanonce" href="/capturarpuntos/masdeunavez">Mas deuna vez</a></li>
           </ul>
         </div>
       </li>

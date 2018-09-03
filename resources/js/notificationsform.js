@@ -22,9 +22,12 @@ $(document).ready(ev=>{
                     'Buen trabajo!',
                     `${data.message}`,
                     'success'
-                )
-                document.getElementById("notificationsform").reset();
-                location.reload();
+                ).then(result => {
+                    result.value ? 
+                    document.getElementById("notificationsform").reset() &&
+                    location.reload():'';
+                })
+                
             },
             error: function(data) {
                 swal({
