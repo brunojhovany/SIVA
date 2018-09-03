@@ -36,4 +36,6 @@ Auth::routes();
         Route::post('/admin/configuracion/api/admonusers/getusertoedit', 'adminController@EditUserForm');
         Route::post('/admin/configuracion/api/admonusers/updateusers', 'adminController@UpdateUsers');
         Route::post('/admin/configuracion/api/admonusers/deleteuser', 'adminController@DeleteUsers');
+        Route::get('/admin/configuracion/admonusers/getformtonewusr', 'adminController@NewUserForm');
+        Route::post('/admin/configuracion/api/admonusers/newuser', 'adminController@NewUser');
     });

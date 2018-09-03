@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="fixed-action-btn">
-            <a href="agrega_user.php" class="btn-floating pulse btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+            <a id="addUserBtn" href="#modal1" class="modal-trigger btn-floating pulse btn-large waves-effect waves-light red"><i class="material-icons">person_add</i></a>
         </div>
 @endsection
 @section('content_js')

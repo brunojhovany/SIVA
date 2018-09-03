@@ -5,12 +5,15 @@ $.ajaxSetup({
     }
 });
 $(document).ready(ev =>{
-    $("#modal1").modal();
+    $("#modal1").modal({
+        onCloseEnd:()=>{
+            window.location.reload(true);
+        }
+    });
     $("#tableUsrAdmon").on("click", "#editUserBtn", function(ev) {
         let currow = $(this).closest("tr");
         let idUser = currow.find("td:eq(0)").text();
-        let level = currow.find("td:eq(3)").text();
-        editUSR(idUser,level);
+        editUSR(idUser);
     });
     $("#tableUsrAdmon").on("click", "#deleteUserBtn", function (ev) {
         ev.preventDefault();
@@ -31,17 +34,32 @@ $(document).ready(ev =>{
             }
         })
     });
-
+    $('#addUserBtn').on('click',ev=>{
+       $.ajax({
+           url: "/admin/configuracion/admonusers/getformtonewusr",
+           type: "get",
+           success: function (data) {
+               $("#modal1").html(data);
+           },
+           error: function (data) {
+               swal({
+                   type: 'error',
+                   title: 'Oops...',
+                   text: 'Something went wrong!',
+                   footer: '<a href>Why do I have this issue?</a>'
+               })
+           }
+       });
+    });
     
 });
-function editUSR(idUser,level) {
+function editUSR(idUser) {
     $.ajax({
         url: "/admin/configuracion/api/admonusers/getusertoedit",
         type: "post",
         dateType: "json",
         data: {
-            usuario: idUser,
-            level:level
+            usuario: idUser
         },
         success: function(data) {
             $("#modal1").html(data);
@@ -70,7 +88,9 @@ function deleteUsr(idUser) {
             'Good job!',
             `${data.message}`,
             'success'
-        )
+        ).then(result =>{
+            result.value ? window.location.reload(true):'';
+        })
     }).fail(error=>{
         swal({
             type: 'error',

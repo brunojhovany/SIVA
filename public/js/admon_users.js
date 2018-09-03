@@ -6,12 +6,15 @@ $.ajaxSetup({
     }
 });
 $(document).ready(function (ev) {
-    $("#modal1").modal();
+    $("#modal1").modal({
+        onCloseEnd: function onCloseEnd() {
+            window.location.reload(true);
+        }
+    });
     $("#tableUsrAdmon").on("click", "#editUserBtn", function (ev) {
         var currow = $(this).closest("tr");
         var idUser = currow.find("td:eq(0)").text();
-        var level = currow.find("td:eq(3)").text();
-        editUSR(idUser, level);
+        editUSR(idUser);
     });
     $("#tableUsrAdmon").on("click", "#deleteUserBtn", function (ev) {
         ev.preventDefault();
@@ -32,15 +35,31 @@ $(document).ready(function (ev) {
             }
         });
     });
+    $('#addUserBtn').on('click', function (ev) {
+        $.ajax({
+            url: "/admin/configuracion/admonusers/getformtonewusr",
+            type: "get",
+            success: function success(data) {
+                $("#modal1").html(data);
+            },
+            error: function error(data) {
+                swal({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    footer: '<a href>Why do I have this issue?</a>'
+                });
+            }
+        });
+    });
 });
-function editUSR(idUser, level) {
+function editUSR(idUser) {
     $.ajax({
         url: "/admin/configuracion/api/admonusers/getusertoedit",
         type: "post",
         dateType: "json",
         data: {
-            usuario: idUser,
-            level: level
+            usuario: idUser
         },
         success: function success(data) {
             $("#modal1").html(data);
@@ -65,7 +84,9 @@ function deleteUsr(idUser) {
             idUser: idUser
         }
     }).done(function (data) {
-        swal('Good job!', '' + data.message, 'success');
+        swal('Good job!', '' + data.message, 'success').then(function (result) {
+            result.value ? window.location.reload(true) : '';
+        });
     }).fail(function (error) {
         swal({
             type: 'error',

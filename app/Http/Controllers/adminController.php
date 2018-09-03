@@ -24,34 +24,57 @@ class adminController extends Controller
         else 
         abort(403,'Forbidden: Acceso denegado para su tipo de usario');
     }
-    public function AdmonUsers(){
+    public function AdmonUsers(Request $request){
         $usr = new User;
         $levelUSR = Auth::user()->profile;
         $lv = userlevels::findOrFail($levelUSR);
         if (Auth::user()->profile  == 1){
             return view('configuracion.admon_users',[
                 'level' => $lv,
-                'users' => $usr->UsersDescription()
+                'users' => $usr->UsersDescription($request)
             ]);
         }
         else 
         abort(403,'Forbidden');
     }
 
-    public function EditUserForm(Request $request){
-        $user = User::find($request->usuario);
-        $level = $request->level;
+    public function NewUserForm(Request $request){
         $usrlevels = userlevels::all();
         $jurisdicciones = jurisdiccion::all();
-        return view('modals.admonusermodal',compact('user','level','usrlevels','jurisdicciones'))->render();
+        return view('modals.addusrmodal', compact('usrlevels', 'jurisdicciones'))->render();
+    }
+    public function NewUser (Request $request){
+        $usr = new User;
+        $usr->name = $request->Name;
+        $usr->email = $request->Email;
+        $usr->password = Hash::make($request->Password);
+        $usr->profile = $request->UserTipe;
+        $request->has('Jurisdiccion') && $request->UserTipe == 2 ? $usr->jurisdiccion = $request->Jurisdiccion:'';
+        if($usr->save()){
+            return response()->json([
+                'message'=> 'Nuevo usuario guardado con éxíto'
+            ]);
+        }else{
+                return response()->json([
+                    'message'=> 'Nuevo usuario guardado con éxíto'
+                ]);
+            }
+    }
+
+    public function EditUserForm(Request $request){
+        $user = new User;
+        $user = $user->UsersDescription($request);
+        $usrlevels = userlevels::all();
+        $jurisdicciones = jurisdiccion::all();
+        return view('modals.admonusermodal',compact('user','usrlevels','jurisdicciones'))->render();
     }
 
     public function UpdateUsers (Request $request){
         $userToUpdate = User::find($request->userId);
         $userToUpdate->name = $request->Name;
-        $userToUpdate->password = Hash::make($request->Password);
-        $request->has('UserTipe')?$userToUpdate->profile = $request->UserTipe:'';
-        $request->has('Jurisdiccion')?$userToUpdate->jurisdiccion = $request->Jurisdiccion :'';
+        $request->has('Password') && $request->Password? $userToUpdate->password = Hash::make($request->Password):'';
+        $request->has('UserTipe')? $userToUpdate->profile = $request->UserTipe:'';
+        $request->has('Jurisdiccion')? $userToUpdate->jurisdiccion = $request->Jurisdiccion :'';
         if($userToUpdate->save()){
             return response()->json([
                 'message' => 'Usuario actualizado.'
