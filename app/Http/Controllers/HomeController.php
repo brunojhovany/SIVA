@@ -26,12 +26,9 @@ class HomeController extends Controller
     public function index()
     {  
         $levelUSR = Auth::user()->profile;
-        $lv = userlevels::findOrFail($levelUSR);
-        if (Auth::user()->profile  == 1){
+        $lv = userlevels::find($levelUSR);
         return view('home',[
             'level' =>  $lv
-        ]);}
-        else 
-        abort(403,'Forbidden');
+        ]);
     }
 }

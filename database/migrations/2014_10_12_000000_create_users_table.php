@@ -17,11 +17,12 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('profile')->default(3);
-            $table->integer('jurisdiccion')->default(0);
+            $table->integer('jurisdiccion');
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

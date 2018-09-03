@@ -26,4 +26,5 @@ mix.js('resources/assets/js/app.js', 'public/js')
 .babel('resources/js/onlyone.js','public/js/onlyone.js')
 .babel('resources/js/notificationsform.js','public/js/notificationsform.js')
 .babel('resources/js/pre_register.js', 'public/js/pre_register.js')
-.babel('resources/js/upfile_form.js', 'public/js/upfile_form.js');
+.babel('resources/js/upfile_form.js', 'public/js/upfile_form.js')
+.babel('resources/js/admon_users.js', 'public/js/admon_users.js');

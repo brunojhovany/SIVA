@@ -20,23 +20,33 @@ $(document).ready(ev => {
         }
     );
     $('#notificationsbuttons').click(ev =>{
-        $.ajax({
-            url:'/admin/configuracion/api/alerts',
-            type:'get'
-        })
-        .then(data =>{
-            swal(
-                `${data.message}`,
-                    `${data.messageServer}`,
-                    'info'
-            )
-        })
-        .fail(error =>{
-            swal(
-                'Error!',
-                    `${error.statusText}`,
-                    'error'
-            )
-        });
+        ev.preventDefault();
+        notifications();
+    });
+
+    $("#notificationsbtnsidebar").click(ev=>{
+        ev.preventDefault();
+        notifications();
     });
 });
+
+function notifications() {
+    $.ajax({
+        url: '/admin/configuracion/api/alerts',
+        type: 'get'
+    })
+        .then(data => {
+            swal(
+                `${data.message}`,
+                `${data.messageServer}`,
+                'info'
+            )
+        })
+        .fail(error => {
+            swal(
+                'Error!',
+                `${error.statusText}`,
+                'error'
+            )
+        });
+}

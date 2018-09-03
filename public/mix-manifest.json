@@ -1,18 +1,4 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/js/jquery.js": "/js/jquery.js",
-    "/js/materialize.js": "/js/materialize.js",
-    "/css/materialize.css": "/css/materialize.css",
-    "/fonts/material-icons.css": "/fonts/material-icons.css",
-    "/fonts/MaterialIcons-Regular.woff2": "/fonts/MaterialIcons-Regular.woff2",
-    "/fonts/MaterialIcons-Regular.woff": "/fonts/MaterialIcons-Regular.woff",
-    "/fonts/MaterialIcons-Regular.ttf": "/fonts/MaterialIcons-Regular.ttf",
-    "/js/sweetalert.js": "/js/sweetalert.js",
-    "/css/sweetalert.css": "/css/sweetalert.css",
-    "/js/header.js": "/js/header.js",
-    "/js/onlyone.js": "/js/onlyone.js",
-    "/js/notificationsform.js": "/js/notificationsform.js",
-    "/js/pre_register.js": "/js/pre_register.js",
-    "/js/upfile_form.js": "/js/upfile_form.js"
+    "/css/app.css": "/css/app.css"
 }

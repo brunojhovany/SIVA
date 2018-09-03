@@ -10,7 +10,7 @@ class puntosfijos extends Controller
 {
     public function solounaves(){
         $levelUSR = Auth::user()->profile;
-        $lv = userlevels::findOrFail($levelUSR);
+        $lv = userlevels::find($levelUSR);
         $query = DB::table('municipio')->select('idmunicipio','nombreM')->get();
         return view('puntosfijos.onlyone',[
             'level' => $lv,

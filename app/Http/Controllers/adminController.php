@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 use DB;
+use App\User;
 use App\registro;
 use App\userlevels;
+use App\jurisdiccion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\avisos_informativos;
 use App\tbl_documentos;
@@ -20,19 +23,84 @@ class adminController extends Controller
             ]);
         }
         else 
-        abort(403,'Forbidden');
+        abort(403,'Forbidden: Acceso denegado para su tipo de usario');
     }
-    public function AdmonUsers(){
+    public function AdmonUsers(Request $request){
+        $usr = new User;
         $levelUSR = Auth::user()->profile;
         $lv = userlevels::findOrFail($levelUSR);
         if (Auth::user()->profile  == 1){
             return view('configuracion.admon_users',[
-                'level' => $lv
+                'level' => $lv,
+                'users' => $usr->UsersDescription($request)
             ]);
         }
         else 
         abort(403,'Forbidden');
     }
+
+    public function NewUserForm(Request $request){
+        $usrlevels = userlevels::all();
+        $jurisdicciones = jurisdiccion::all();
+        return view('modals.addusrmodal', compact('usrlevels', 'jurisdicciones'))->render();
+    }
+    public function NewUser (Request $request){
+        $usr = new User;
+        $usr->name = $request->Name;
+        $usr->email = $request->Email;
+        $usr->password = Hash::make($request->Password);
+        $usr->profile = $request->UserTipe;
+        $request->has('Jurisdiccion') && $request->UserTipe == 2 ? $usr->jurisdiccion = $request->Jurisdiccion:'';
+        if($usr->save()){
+            return response()->json([
+                'message'=> 'Nuevo usuario guardado con éxíto'
+            ]);
+        }else{
+                return response()->json([
+                    'message'=> 'Nuevo usuario guardado con éxíto'
+                ]);
+            }
+    }
+
+    public function EditUserForm(Request $request){
+        $user = new User;
+        $user = $user->UsersDescription($request);
+        $usrlevels = userlevels::all();
+        $jurisdicciones = jurisdiccion::all();
+        return view('modals.admonusermodal',compact('user','usrlevels','jurisdicciones'))->render();
+    }
+
+    public function UpdateUsers (Request $request){
+        $userToUpdate = User::find($request->userId);
+        $userToUpdate->name = $request->Name;
+        $request->has('Password') && $request->Password? $userToUpdate->password = Hash::make($request->Password):'';
+        $request->has('UserTipe')? $userToUpdate->profile = $request->UserTipe:'';
+        $request->has('Jurisdiccion')? $userToUpdate->jurisdiccion = $request->Jurisdiccion :'';
+        if($userToUpdate->save()){
+            return response()->json([
+                'message' => 'Usuario actualizado.'
+            ]);
+        }
+        else{
+            return response()->json([
+                'message' => 'No hay nada que actualizar'
+            ]);
+        }
+    }
+    public function DeleteUsers(Request $request){
+        if(User::find($request->idUser)->delete()){
+            return response()->json([
+                'message' => 'usurio elíminado'
+            ]);
+        }
+        else{
+            return response()->json([
+                'message' => 'Ocurrió un error al eliminar al usuario'
+            ]);
+        }
+    }
+
+
     public function AdmonNotifictions(){
         $levelUSR = Auth::user()->profile;
         $lv = userlevels::findOrFail($levelUSR);
@@ -70,29 +138,6 @@ class adminController extends Controller
         abort(403,'Forbidden');
     }
 
-    public function store_notifications(Request $request) {
-        $newAviso = new avisos_informativos;
-        $newAviso->descripcion_aviso = $request->descripcion_aviso;
-        if($newAviso->save()){
-            return response()->json([
-                'message'=>'saved!'
-            ]);
-        }else{
-            return response()->json([
-                'message' => 'failed to save'
-            ]);
-        }
-        
-    }
-
-    public function Notifications(){
-        $alerts = avisos_informativos::select('idavisos','descripcion_aviso')->orderBy('idavisos','desc')->first();
-        $alerts = $alerts->descripcion_aviso;
-        return response()->json([
-            'message' => $alerts,
-            'messageServer' => 'Mensaje del Administrador'
-        ],200);
-    }
     public function AdmonRegisterSave(Request $request){
         if(Auth::user()->profile  == 1){
             $claveLocalidad=DB::table('localidades')->select('clave')->where('idlocalidades','=',"$request->Localidad")->first();
@@ -158,6 +203,21 @@ class adminController extends Controller
                 'message' => 'failed to save'
             ]);
         }
+    }
+
+
+    public function store_notifications(Request $request) {
+        $newAviso = new avisos_informativos;
+        $newAviso->descripcion_aviso = $request->descripcion_aviso;
+        if($newAviso->save()){
+            return response()->json([
+                'message'=>'saved!'
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'failed to save'
+            ]);
+        }
         
     }
     public function DownloadGuide($filename){
@@ -182,4 +242,14 @@ class adminController extends Controller
         return back()->withInput();
     
     }
+
+    public function Notifications(){
+        $alerts = avisos_informativos::select('idavisos','descripcion_aviso')->orderBy('idavisos','desc')->first();
+        $alerts = $alerts->descripcion_aviso;
+        return response()->json([
+            'message' => $alerts,
+            'messageServer' => 'Mensaje del Administrador'
+        ],200);
+    }
+    
 }
