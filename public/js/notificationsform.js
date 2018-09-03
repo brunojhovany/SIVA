@@ -20,6 +20,7 @@ $(document).ready(function (ev) {
             success: function success(data) {
                 swal('Buen trabajo!', '' + data.message, 'success');
                 document.getElementById("notificationsform").reset();
+                location.reload();
             },
             error: function (_error) {
                 function error(_x) {
@@ -35,7 +36,7 @@ $(document).ready(function (ev) {
                 swal({
                     type: "error",
                     title: "Oops...",
-                    text: 'Something went wrong! ' + error.responseJSON.message
+                    text: 'El archivo no se ha podido subir! ' + error.responseJSON.message
                 });
             })
         });

@@ -15,5 +15,6 @@
     "/js/notificationsform.js": "/js/notificationsform.js",
     "/js/pre_register.js": "/js/pre_register.js",
     "/js/upfile_form.js": "/js/upfile_form.js",
-    "/js/admon_users.js": "/js/admon_users.js"
+    "/js/admon_users.js": "/js/admon_users.js",
+    "/js/delete_handbooks.js": "/js/delete_handbooks.js"
 }

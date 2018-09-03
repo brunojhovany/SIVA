@@ -170,6 +170,20 @@ class adminController extends Controller
         abort(403,'Forbidden: Lo sentimos, usted no tiene permisos para usar esto');
     }
 
+    public function ListFiles() {
+        $levelUSR = Auth::user()->profile;
+        $lv = userlevels::findOrFail($levelUSR);
+        $newFile = tbl_documentos::orderBy('nombre_archivo','asc')->get();
+        if (Auth::user()->profile  == (1 || 2 || 3)){
+            return view('configuracion.show_manual',[
+                'level' => $lv,
+                'newFiles' => $newFile
+            ]);
+        }
+        else 
+        abort(403,'Forbidden');
+    }
+
     public function Upfiles() {
         //$newFile = new tbl_documentos;
         $levelUSR = Auth::user()->profile;
@@ -196,11 +210,11 @@ class adminController extends Controller
         $newFile->nombre_archivo = $name;
         if($newFile->save()){
             return response()->json([
-                'message'=>'saved!'
+                'message'=>'El archivo se ha guardado correctamente!'
             ]);
         }else{
             return response()->json([
-                'message' => 'failed to save'
+                'message' => 'El archivo no se ha podido guardar!'
             ]);
         }
     }
@@ -232,14 +246,15 @@ class adminController extends Controller
             \File::delete($file_path);
             if(tbl_documentos::where('id_documento','=',"$idfile")->delete()){
             return response()->json([
-                'message'=>'Erased file!'
+                'message'=>'El archivo se ha borrado correctamente!'
             ]);
             }
         }else{
             dd('El archivo no existe.');
           }
         
-        return back()->withInput();
+        //return back()->withInput();
+        
     
     }
 

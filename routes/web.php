@@ -25,7 +25,9 @@ Auth::routes();
         Route::post('/capturarpuntos/api/direccion','puntosfijos@Direccion');
         Route::post('/capturarpuntos/api/unavez','puntosfijos@SaveSolounavez');
         Route::post('/capturarpuntos/api/admon-notifications','adminController@store_notifications');
+        Route::get('configuracion/lista-manuales', 'adminController@ListFiles');
 
+        
         Route::get('/admin/configuracion', 'adminController@Index');
         Route::get('/admin/configuracion/admonusers', 'adminController@AdmonUsers');
         Route::get('/admin/configuracion/admonnotifictions', 'adminController@AdmonNotifictions');
