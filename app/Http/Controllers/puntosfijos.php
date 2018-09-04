@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use DB;
+use App\registro;
 use App\userlevels;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -59,6 +60,8 @@ class puntosfijos extends Controller
     }
 
     public function MoreThanOnce(Request $request){
-        return view('');
+        $Registro = new registro;
+        dd($Registro->MoreThanOnce());
+        return view('puntosfijos.morethanonce');
     }
 }
