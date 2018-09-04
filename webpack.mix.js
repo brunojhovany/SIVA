@@ -28,4 +28,5 @@ mix.js('resources/assets/js/app.js', 'public/js')
 .babel('resources/js/pre_register.js', 'public/js/pre_register.js')
 .babel('resources/js/upfile_form.js', 'public/js/upfile_form.js')
 .babel('resources/js/admon_users.js', 'public/js/admon_users.js')
-.babel('resources/js/delete_handbooks.js', 'public/js/delete_handbooks.js');
+.babel('resources/js/delete_handbooks.js', 'public/js/delete_handbooks.js')
+.babel('resources/js/morethanonce.js','public/js/morethanonce.js');

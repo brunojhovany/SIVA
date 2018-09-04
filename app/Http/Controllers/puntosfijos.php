@@ -61,7 +61,12 @@ class puntosfijos extends Controller
 
     public function MoreThanOnce(Request $request){
         $Registro = new registro;
-        dd($Registro->MoreThanOnce());
-        return view('puntosfijos.morethanonce');
+        $levelUSR = Auth::user()->profile;
+        $lv = userlevels::find($levelUSR);
+        // dd($Registro->MoreThanOnce());
+        return view('puntosfijos.morethanonce',[
+            'level' => $lv,
+            'Registros' => $Registro->MoreThanOnce()
+        ]);
     }
 }
