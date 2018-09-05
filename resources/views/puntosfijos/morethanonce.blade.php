@@ -36,10 +36,20 @@
                         </p>
                     </td>
                     <td><input type="text" placeholder="Causas"></td>
+                    <td><input type="text" placeholder="Acciones"></td>
+                    <td>
+                        <p>
+                            <label>
+                                <input type="checkbox" class="filled-in" />
+                                <span></span>
+                            </label>
+                        </p>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
+        <button type="submit" class="btn-floating btn-large waves-effect waves-light red right tooltipped" data-position="bottom" data-tooltip="Guardar"><i class="material-icons">save_alt</i></button>
     </form>
     {{ $Registros->links()}}
 </div>
