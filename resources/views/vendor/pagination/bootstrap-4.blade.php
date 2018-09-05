@@ -31,8 +31,10 @@
             <li class="page-item">
                 <a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')">&rsaquo;</a>
             </li>
+            <li class="waves-effect" aria-label="@lang('pagination.next')"><a href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')"><i class="material-icons">chevron_left</i></a></li>
         @else
-            <li class="disabled" aria-label="@lang('pagination.previous')"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+            <li class="disabled" aria-label="@lang('pagination.next')
+            "><a href="#!"><i class="material-icons">chevron_right</i></a></li>
         @endif
     </ul>
 @endif
