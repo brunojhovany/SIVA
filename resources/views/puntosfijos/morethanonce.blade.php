@@ -1,6 +1,6 @@
 @extends('layouts.app') @section('content')
 <div class="container">
-    <form method="POST">
+    <form method="POST" id="morethanonceform">
         <table class="striped highlight responsive-table">
             <thead>
                 <th hidden>ID</th>
@@ -19,28 +19,28 @@
             <tbody>
                 @foreach ($Registros as $R)
                 <tr>
-                    <td hidden>{{$R->idregistro}}</td>
+                    <td hidden><input name="{{$R->idregistro}}[idregistro]" type="text" value="{{$R->idregistro}}"></td>
                     <td>{{$R->folio}}</td>
                     <td>{{$R->nombreM}}</td>
                     <td>{{$R->nombreL}}</td>
                     <td>{{$R->domicilio}}</td>
-                    <td><input type="text" class="datepicker" placeholder="Fecha"></td>
-                    <td><input type="text" class="timepicker" placeholder="Hora"></td>
-                    <td><input type="text" placeholder="valor"></td>
+                    <td><input name="{{$R->idregistro}}[Fecha]" type="text" class="datepicker" placeholder="Fecha"></td>
+                    <td><input name="{{$R->idregistro}}[Hora]" type="text" class="timepicker" placeholder="Hora"></td>
+                    <td><input name="{{$R->idregistro}}[Valor]" type="text" placeholder="valor"></td>
                     <td>
                         <p>
                             <label>
-                                <input type="checkbox" class="filled-in" />
+                                <input type="checkbox" name="{{$R->idregistro}}[SinServicio]" class="filled-in" />
                                 <span>S/S</span>
                             </label>
                         </p>
                     </td>
-                    <td><input type="text" placeholder="Causas"></td>
-                    <td><input type="text" placeholder="Acciones"></td>
+                    <td><input name="{{$R->idregistro}}[Causas]" type="text" placeholder="Causas"></td>
+                    <td><input name="{{$R->idregistro}}[Acciones]" type="text" placeholder="Acciones"></td>
                     <td>
                         <p>
                             <label>
-                                <input type="checkbox" class="filled-in" />
+                                <input name="{{$R->idregistro}}[MuestraBacteriologica]" type="checkbox" class="filled-in" />
                                 <span></span>
                             </label>
                         </p>
@@ -49,7 +49,7 @@
                 @endforeach
             </tbody>
         </table>
-        <button type="submit" class="btn-floating btn-large waves-effect waves-light red right tooltipped" data-position="bottom" data-tooltip="Guardar"><i class="material-icons">save_alt</i></button>
+        <button id="submitmorethanoncebtn" type="submit" class="btn-floating btn-large waves-effect waves-light red right tooltipped" data-position="bottom" data-tooltip="Guardar" style="display:none;"><i class="material-icons">save_alt</i></button>
     </form>
     {{ $Registros->links()}}
 </div>

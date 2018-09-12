@@ -45,4 +45,5 @@ Auth::routes();
         Route::post('/admin/configuracion/api/admonregistersave','adminController@AdmonRegisterSave');
         Route::get('guides/download/{filename}','adminController@DownloadGuide');
         Route::delete('guides/delete/{idfile}/{filename}','adminController@DeleteGuide');
+        Route::post('/capturarpuntos/masdeunavez/save','puntosfijos@SaveMoreThanOnce');
     });

@@ -63,10 +63,24 @@ class puntosfijos extends Controller
         $Registro = new registro;
         $levelUSR = Auth::user()->profile;
         $lv = userlevels::find($levelUSR);
-        // dd($Registro->MoreThanOnce());
         return view('puntosfijos.morethanonce',[
             'level' => $lv,
             'Registros' => $Registro->MoreThanOnce()
         ]);
+    }
+    public function SaveMoreThanOnce(Request $request){
+        foreach ($request->all() as $R) {
+            $_registro = new registro;
+            $_registro->fecha = $R['Fecha'];
+            $_registro->hora = $R['Hora'];
+            $_registro->valor = $R['Valor'];
+            array_key_exists('SinServicio',$R) ? $_registro->sin_servicio = 1 : '';
+            $_registro->causas = $R['Causas'];
+            $_registro->acciones = $R['Acciones'];
+            array_key_exists('MuestraBacteriologica', $R) ? $_registro->sin_servicio = 1 : '';
+            $R['Fecha']? dd('ok') : dd('no shure');
+            
+        }
+        
     }
 }
