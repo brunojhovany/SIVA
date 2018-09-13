@@ -136,7 +136,7 @@ $(document).ready(ev=>{
         labelMonthSelect: "Selecciona un mes",
         labelYearSelect: "Selecciona un año",
         format: "yyyy-mm-dd"
-    });
+    }); 
 
     $(".timepicker").timepicker({ twelveHour:false });
 

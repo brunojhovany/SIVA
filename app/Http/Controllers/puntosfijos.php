@@ -78,8 +78,7 @@ class puntosfijos extends Controller
             $_registro->causas = $R['Causas'];
             $_registro->acciones = $R['Acciones'];
             array_key_exists('MuestraBacteriologica', $R) ? $_registro->sin_servicio = 1 : '';
-            $R['Fecha']? dd('ok') : dd('no shure');
-            
+            $R['Fecha']? dd('ok 🐱‍🐉') : dd("hace falta la fecha 🗓");
         }
         
     }
