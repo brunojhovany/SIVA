@@ -71,6 +71,7 @@ class puntosfijos extends Controller
     public function SaveMoreThanOnce(Request $request){
         foreach ($request->all() as $R) {
             $_registro = new registro;
+            $id = $R['idregistro'];
             $_registro->fecha = $R['Fecha'];
             $_registro->hora = $R['Hora'];
             $_registro->valor = $R['Valor'];
@@ -78,8 +79,7 @@ class puntosfijos extends Controller
             $_registro->causas = $R['Causas'];
             $_registro->acciones = $R['Acciones'];
             array_key_exists('MuestraBacteriologica', $R) ? $_registro->sin_servicio = 1 : '';
-            $R['Fecha']? dd('ok 🐱‍🐉') : dd("hace falta la fecha 🗓");
+            $R['Fecha']? dd('ok 🐱‍🐉') : response()->json(['']);
         }
-        
     }
 }
