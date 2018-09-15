@@ -41,10 +41,13 @@ $(document).ready(function () {
             timeout: 60000,
             success: function success(data) {
                 M.toast({
-                    html: '' + data,
+                    html: '' + data.message,
                     classes: 'rounded teal lighten-2'
                 });
                 document.getElementById('submitmorethanoncebtn').style.display = "none";
+                setTimeout(function () {
+                    window.location.reload(true);
+                }, 2000);
             },
             error: function error(data) {
                 M.toast({

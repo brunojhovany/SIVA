@@ -70,16 +70,21 @@ class puntosfijos extends Controller
     }
     public function SaveMoreThanOnce(Request $request){
         foreach ($request->all() as $R) {
-            $_registro = new registro;
-            $id = $R['idregistro'];
-            $_registro->fecha = $R['Fecha'];
-            $_registro->hora = $R['Hora'];
-            $_registro->valor = $R['Valor'];
-            array_key_exists('SinServicio',$R) ? $_registro->sin_servicio = 1 : '';
-            $_registro->causas = $R['Causas'];
-            $_registro->acciones = $R['Acciones'];
-            array_key_exists('MuestraBacteriologica', $R) ? $_registro->sin_servicio = 1 : '';
-            $R['Fecha']? dd('ok 🐱‍🐉') : response()->json(['']);
+            $toUpdate =[
+                'fecha' => $R['Fecha'],
+                'hora' => $R['Hora'],
+                'valor' => $R['Valor'],
+                'sin_servicio' => array_key_exists('SinServicio',$R) ? 1 : 0,
+                'causas' => $R['Causas'],
+                'acciones' => $R['Acciones'],
+                'muestra' => array_key_exists('MuestraBacteriologica', $R) ? 1 : 0,
+                'user_id' => Auth::user()->id,
+                'status' => 1
+            ];
+            $R['Fecha']? registro::where('idregistro',$R['idregistro'])->update($toUpdate):'';
         }
+        return response()->json([
+            'message' => 'Se guardaron los registros'
+        ]);
     }
 }

@@ -75,10 +75,13 @@ $(document).ready(()=>{
             timeout: 60000,
             success: function (data) {
                 M.toast({
-                    html: `${data}`,
+                    html: `${data.message}`,
                     classes: 'rounded teal lighten-2'
                 });
                 document.getElementById('submitmorethanoncebtn').style.display = "none";
+                setTimeout(() => {
+                    window.location.reload(true)
+                }, 2000);
             },
             error: function (data) {
                  M.toast({
