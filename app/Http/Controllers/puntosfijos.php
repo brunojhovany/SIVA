@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use DB;
+use App\registro;
 use App\userlevels;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,15 +37,15 @@ class puntosfijos extends Controller
         ]);
     }
     public function SaveSolounavez(Request $request){
-        // dd($request->all());
+    
         $update=[
             'fecha' => $request->Fecha,
             'hora' => $request->Hora,
             'valor' => $request->Valor,
-            'sin_servicio' => $request->Servicio,
+            'sin_servicio' => $request->has('Servicio')? 1 : 0,
             'causas' => $request->Causas,
             'acciones' => $request->Acciones,
-            'muestra' => $request->Bacteriologico,
+            'muestra' => $request->has('Bacteriologico')? 1: 0,
             'user_id' => Auth::user()->id,
             'status' => 1
         ];
@@ -57,5 +58,34 @@ class puntosfijos extends Controller
                 'message' => 'No hay nada que actualizar'
             ]);
         }
+    }
+
+    public function MoreThanOnce(Request $request){
+        $Registro = new registro;
+        $levelUSR = Auth::user()->profile;
+        $lv = userlevels::find($levelUSR);
+        return view('puntosfijos.morethanonce',[
+            'level' => $lv,
+            'Registros' => $Registro->MoreThanOnce()
+        ]);
+    }
+    public function SaveMoreThanOnce(Request $request){
+        foreach ($request->all() as $R) {
+            $toUpdate =[
+                'fecha' => $R['Fecha'],
+                'hora' => $R['Hora'],
+                'valor' => $R['Valor'],
+                'sin_servicio' => array_key_exists('SinServicio',$R) ? 1 : 0,
+                'causas' => $R['Causas'],
+                'acciones' => $R['Acciones'],
+                'muestra' => array_key_exists('MuestraBacteriologica', $R) ? 1 : 0,
+                'user_id' => Auth::user()->id,
+                'status' => 1
+            ];
+            $R['Fecha']? registro::where('idregistro',$R['idregistro'])->update($toUpdate):'';
+        }
+        return response()->json([
+            'message' => 'Se guardaron los registros'
+        ]);
     }
 }

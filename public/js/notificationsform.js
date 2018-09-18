@@ -18,9 +18,9 @@ $(document).ready(function (ev) {
             processData: false,
             timeout: 60000,
             success: function success(data) {
-                swal('Buen trabajo!', '' + data.message, 'success');
-                document.getElementById("notificationsform").reset();
-                location.reload();
+                swal('Buen trabajo!', '' + data.message, 'success').then(function (result) {
+                    result.value ? document.getElementById("notificationsform").reset() && location.reload() : '';
+                });
             },
             error: function (_error) {
                 function error(_x) {
