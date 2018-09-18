@@ -37,14 +37,15 @@ class puntosfijos extends Controller
         ]);
     }
     public function SaveSolounavez(Request $request){
+    
         $update=[
             'fecha' => $request->Fecha,
             'hora' => $request->Hora,
             'valor' => $request->Valor,
-            'sin_servicio' => $request->Servicio,
+            'sin_servicio' => $request->has('Servicio')? 1 : 0,
             'causas' => $request->Causas,
             'acciones' => $request->Acciones,
-            'muestra' => $request->Bacteriologico,
+            'muestra' => $request->has('Bacteriologico')? 1: 0,
             'user_id' => Auth::user()->id,
             'status' => 1
         ];
