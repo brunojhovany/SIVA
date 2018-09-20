@@ -26,6 +26,9 @@ Auth::routes();
         Route::post('/capturarpuntos/api/unavez','puntosfijos@SaveSolounavez');
         Route::post('/capturarpuntos/api/admon-notifications','adminController@store_notifications');
         Route::get('configuracion/lista-manuales', 'adminController@ListFiles');
+        Route::get('/ver/historial', 'HistoricController@HistoricView');
+        Route::post('/consulta/historial', 'HistoricController@HistoricQuery');
+        Route::get('/ver/lista-historial', 'HistoricController@HistoricQuery');
 
 
         Route::get('/admin/configuracion', 'adminController@Index');
