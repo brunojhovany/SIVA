@@ -51,6 +51,7 @@ Auth::routes();
         Route::post('/capturarpuntos/masdeunavez/save','puntosfijos@SaveMoreThanOnce');
 
         Route::get('monitoreo/modificar','monitoreo@Modificar');
+        Route::get('/monitoreo/modificar/{semana}','monitoreo@GetSemana');
         Route::get('monitoreo/eliminar','monitoreo@Eliminar');
         Route::get('monitoreo/resultadosbacteriologicos','monitoreo@ResultadosBacteriologicos');
     });

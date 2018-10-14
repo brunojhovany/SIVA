@@ -31,13 +31,12 @@ class puntosfijos extends Controller
         ]);
     }
     public function Direccion(Request $request){
-        $query = DB::table('registro')->select('idregistro','folio','domicilio')->where('idlocalidades','=',"$request->idlocalidades")->where('status','=','0')->get();
+        $query = DB::table('registro')->select('idregistro','folio','domicilio')->where('idlocalidades','=',"$request->idlocalidades")->where('status','=','0')->whereRaw("yearweek(f,1) = YEARWEEK(current_date,1)")->get();
         return response()->json([
             'Direcciones' => view('selects.direccion',compact('query'))->render()
         ]);
     }
     public function SaveSolounavez(Request $request){
-    
         $update=[
             'fecha' => $request->Fecha,
             'hora' => $request->Hora,
