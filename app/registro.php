@@ -22,6 +22,6 @@ class registro extends Model
     }
     public function ModificarAdmin($year){
         return $this::select()->leftJoin('municipio as M','M.idmunicipio','registro.idmunicipio')->
-        leftJoin('localidades as L','L.idlocalidades','registro.idlocalidades')->whereRaw("yearweek(f,1) = $year")->paginate(5);
+        leftJoin('localidades as L','L.idlocalidades','registro.idlocalidades')->whereRaw("yearweek(f,1) = $year")->where('registro.status',0)->paginate(5);
     }
 }
