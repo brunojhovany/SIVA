@@ -27,9 +27,15 @@ $(document).ready(function() {
         });
     });
 });
-
 let loader = {
  Indeterminate: `<div style="margin-top:10%;" class="container progress">
       <div class="indeterminate"></div>
   </div>`
 }
+
+document.addEventListener('DOMContentLoaded',()=>{
+    document.onchange = ev => {
+        document.getElementById('submitMod').style.display = '';
+        M.AutoInit();
+    }
+},false);

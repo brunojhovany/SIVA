@@ -26,7 +26,13 @@ $(document).ready(function () {
         });
     });
 });
-
 var loader = {
     Indeterminate: '<div style="margin-top:10%;" class="container progress">\n      <div class="indeterminate"></div>\n  </div>'
 };
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.onchange = function (ev) {
+        document.getElementById('submitMod').style.display = '';
+        M.AutoInit();
+    };
+}, false);

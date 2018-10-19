@@ -6,6 +6,7 @@ $.ajaxSetup({
 });
 $(document).ready(ev => {
     $('.sidenav').sidenav();
+    $('.modal').modal();
     $(".dropdown-trigger").dropdown(
         {
             autoTrigger: true,

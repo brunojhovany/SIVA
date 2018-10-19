@@ -6,6 +6,7 @@ $.ajaxSetup({
 });
 $(document).ready(function (ev) {
     $('.sidenav').sidenav();
+    $('.modal').modal();
     $(".dropdown-trigger").dropdown({
         autoTrigger: true,
         inDuration: 500,

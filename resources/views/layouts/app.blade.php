@@ -22,5 +22,8 @@
     <script src="{{ asset('js/sweetalert.js') }}"></script>
     <script src="{{ asset('js/header.js') }}"></script>
     @yield('content_js')
+    @if (auth::user()->profile == 1)
+        @include('includes.modal_modificar')
+    @endif
 </body>
 </html>
