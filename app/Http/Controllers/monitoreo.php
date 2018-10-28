@@ -8,20 +8,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class monitoreo extends Controller
-{
-    public function Modificar () {
-        $levelUSR = Auth::user()->profile;
-        $lv = userlevels::find($levelUSR);
-        return view('monitoreo.modificar',[
-            'level' =>$lv
-        ]);
-    }
+{   
     public function GetSemana($semana){
         $Registro = new registro;
         $Registros = $Registro->ModificarAdmin($semana);
-        return response()->json([
-            'html' => view('monitoreo.modificar.modificartable',compact('Registros'))->render()
+        return view('monitoreo.modificar.modificar_admin',[
+            'Registros' => $Registros,
+            'level' => userlevels::find(Auth::user()->profile)
         ]);
+    
     }
     public function Eliminar(){
         return view('monitoreo.eliminar');

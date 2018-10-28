@@ -50,7 +50,6 @@ Auth::routes();
         Route::delete('guides/delete/{idfile}/{filename}','adminController@DeleteGuide');
         Route::post('/capturarpuntos/masdeunavez/save','puntosfijos@SaveMoreThanOnce');
 
-        Route::get('monitoreo/modificar','monitoreo@Modificar');
         Route::get('/monitoreo/modificar/{semana}','monitoreo@GetSemana');
         Route::get('monitoreo/eliminar','monitoreo@Eliminar');
         Route::get('monitoreo/resultadosbacteriologicos','monitoreo@ResultadosBacteriologicos');

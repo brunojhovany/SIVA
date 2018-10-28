@@ -12,17 +12,34 @@ $(document).ready(function () {
         var year = new Date();
         year = year.getFullYear();
         $('.renderspace').html(loader.Indeterminate);
+        window.location.href = '/monitoreo/modificar/' + year + semana;
+    });
+    $("#modificarregistroForm").on("submit", function (ev) {
+        ev.preventDefault();
         $.ajax({
-            method: 'GET',
-            url: '/monitoreo/modificar/' + year + semana
-        }).done(function (response) {
-            $('.renderspace').html(response.html);
-        }).catch(function (error) {
-            swal({
-                type: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong! ' + error.status + ' ' + error.statusText
-            });
+            type: "POST",
+            url: "/capturarpuntos/masdeunavez/save",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            timeout: 60000,
+            success: function success(data) {
+                M.toast({
+                    html: '' + data.message,
+                    classes: 'rounded teal lighten-2'
+                });
+                document.getElementById('submitmorethanoncebtn').style.display = "none";
+                setTimeout(function () {
+                    window.location.reload(true);
+                }, 2000);
+            },
+            error: function error(data) {
+                M.toast({
+                    html: 'Algo sali\xF3 mal \uD83E\uDD37\uD83D\uDC7E',
+                    classes: 'rounded red'
+                });
+            }
         });
     });
 });

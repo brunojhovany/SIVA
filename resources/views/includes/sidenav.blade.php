@@ -26,10 +26,8 @@
         <a class="collapsible-header">Monitoreo<i class="material-icons">arrow_drop_down</i></a>
         <div class="collapsible-body">
           <ul>
-            <li><a @if (auth::user()->profile==1)
-                class="modal-trigger"
-                href="#modRegModal"
-                onclick="$('.sidenav').sidenav('close');"
+            <li><a @if (auth::user()->profile==1) href="#"
+                onclick="modificarFunc(); $('.sidenav').sidenav('close');"
             @else
                 href="/monitoreo/modificar"
             @endif>Modificar</a></li>
