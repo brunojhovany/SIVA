@@ -24,7 +24,6 @@
 </div>
 <div class="container">
     <form method="POST" id="modificarregistroForm">
-        @csrf
         <table class="striped highlight responsive-table">
             <thead>
                 <th hidden>ID</th>
@@ -45,7 +44,7 @@
                     <td>
                         <p>
                             <label>
-                                <input name="{{$R->idregistro}}[MuestraBacteriologica]" type="checkbox" class="filled-in" />
+                                <input name="{{$R->idregistro}}[habilitar]" type="checkbox" class="filled-in" />
                                 <span></span>
                             </label>
                         </p>

@@ -17,26 +17,26 @@ $(document).ready(function() {
         ev.preventDefault();
         $.ajax({
             type: "POST",
-            url: "/capturarpuntos/masdeunavez/save",
+            url: "/monitoreo/modificar/admin/habilitarreg",
             data: new FormData(this),
             contentType: false,
             cache: false,
             processData: false,
             timeout: 60000,
-            success: function (data) {
+            success: function(data) {
                 M.toast({
                     html: `${data.message}`,
-                    classes: 'rounded teal lighten-2'
+                    classes: "rounded teal lighten-2"
                 });
-                document.getElementById('submitmorethanoncebtn').style.display = "none";
+                document.getElementById("submitMod").style.display = "none";
                 setTimeout(() => {
-                    window.location.reload(true)
+                    window.location.reload(true);
                 }, 2000);
             },
-            error: function (data) {
+            error: function(data) {
                 M.toast({
                     html: `Algo salió mal 🤷👾`,
-                    classes: 'rounded red'
+                    classes: "rounded red"
                 });
             }
         });

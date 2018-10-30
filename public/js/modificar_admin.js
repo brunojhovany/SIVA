@@ -18,7 +18,7 @@ $(document).ready(function () {
         ev.preventDefault();
         $.ajax({
             type: "POST",
-            url: "/capturarpuntos/masdeunavez/save",
+            url: "/monitoreo/modificar/admin/habilitarreg",
             data: new FormData(this),
             contentType: false,
             cache: false,
@@ -27,9 +27,9 @@ $(document).ready(function () {
             success: function success(data) {
                 M.toast({
                     html: '' + data.message,
-                    classes: 'rounded teal lighten-2'
+                    classes: "rounded teal lighten-2"
                 });
-                document.getElementById('submitmorethanoncebtn').style.display = "none";
+                document.getElementById("submitMod").style.display = "none";
                 setTimeout(function () {
                     window.location.reload(true);
                 }, 2000);
@@ -37,7 +37,7 @@ $(document).ready(function () {
             error: function error(data) {
                 M.toast({
                     html: 'Algo sali\xF3 mal \uD83E\uDD37\uD83D\uDC7E',
-                    classes: 'rounded red'
+                    classes: "rounded red"
                 });
             }
         });
