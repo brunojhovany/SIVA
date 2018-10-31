@@ -32,9 +32,13 @@ class monitoreo extends Controller
         ]);
     }
     public function Eliminar(){
-        return view('monitoreo.eliminar');
+        return view('monitoreo.eliminar',[
+            'level' => userlevels::find(Auth::user()->profile)
+        ]);
     }
     public function ResultadosBacteriologicos(){
-        return view('monitoreo.resultados_bacteriologicos');
+        return view('monitoreo.resultados_bacteriologicos',[
+            'level' => userlevels::find(Auth::user()->profile)
+        ]);
     }
 }

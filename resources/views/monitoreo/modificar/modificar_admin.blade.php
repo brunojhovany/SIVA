@@ -22,6 +22,9 @@
         </div>
     </div>
 </div>
+@unless($Registros->count()>0)
+    <h1 class="center">Sin registros para habilitar</h1>
+@else
 <div class="container">
     <form method="POST" id="modificarregistroForm">
         <table class="striped highlight responsive-table">
@@ -57,5 +60,6 @@
     </form>
     {{ $Registros->links()}}
 </div>
+@endunless
 <script src="{{asset('js/modificar_admin.js')}}"></script>
 @endsection
