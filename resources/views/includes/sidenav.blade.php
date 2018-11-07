@@ -26,9 +26,13 @@
         <a class="collapsible-header">Monitoreo<i class="material-icons">arrow_drop_down</i></a>
         <div class="collapsible-body">
           <ul>
-            <li><a href="#!">Modificar</a></li>
-            <li><a href="#!">Eliminar</a></li>
-            <li><a href="#!">Resultados bacteriologicos</a></li>
+            <li><a @if (auth::user()->profile==1) href="#"
+                onclick="modificarFunc(); $('.sidenav').sidenav('close');"
+            @else
+                href="/monitoreo/modificar"
+            @endif>Modificar</a></li>
+            <li><a href="/monitoreo/eliminar">Eliminar</a></li>
+            <li><a href="/monitoreo/resultadosbacteriologicos">Resultados bacteriologicos</a></li>
           </ul>
         </div>
       </li>

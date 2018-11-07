@@ -1,1 +1,1 @@
-<h1>Resultados</h1>
+@extends('layouts.app')

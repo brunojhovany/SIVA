@@ -6,6 +6,7 @@ $.ajaxSetup({
 });
 $(document).ready(function (ev) {
     $('.sidenav').sidenav();
+    $('.modal').modal();
     $(".dropdown-trigger").dropdown({
         autoTrigger: true,
         inDuration: 500,
@@ -38,6 +39,26 @@ function notifications() {
         swal('Error!', "" + error.statusText, 'error');
     });
 }
+function modificarFunc() {
+    swal({
+        title: '¿Que semana desea modificar?',
+        input: 'text',
+        inputAttributes: {
+            autocapitalize: 'off'
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Modificar',
+        cancelButtonText: 'Cancelar',
+        showLoaderOnConfirm: true,
+        preConfirm: function preConfirm(semana) {
+            var date = new Date();
+            window.location.href = "/monitoreo/modificar/" + date.getFullYear() + semana;
+        },
+        allowOutsideClick: function allowOutsideClick() {
+            return !swal.isLoading();
+        }
+    });
+};
 $(document).ready(function (ev) {});
 
 function getView(url) {

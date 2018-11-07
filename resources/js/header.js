@@ -6,6 +6,7 @@ $.ajaxSetup({
 });
 $(document).ready(ev => {
     $('.sidenav').sidenav();
+    $('.modal').modal();
     $(".dropdown-trigger").dropdown(
         {
             autoTrigger: true,
@@ -50,3 +51,21 @@ function notifications() {
             )
         });
 }
+function modificarFunc(){
+    swal({
+        title: '¿Que semana desea modificar?',
+        input: 'text',
+        inputAttributes: {
+            autocapitalize: 'off',
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Modificar',
+        cancelButtonText: 'Cancelar',
+        showLoaderOnConfirm: true,
+        preConfirm: (semana) => {
+            let date = new Date();
+            window.location.href = `/monitoreo/modificar/${date.getFullYear()}${semana}`;
+        },
+        allowOutsideClick: () => !swal.isLoading()
+    })
+};
