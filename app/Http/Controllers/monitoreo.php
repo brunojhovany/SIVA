@@ -31,9 +31,13 @@ class monitoreo extends Controller
             'message' => 'Guardado con éxito'
         ]);
     }
-    public function Eliminar(){
+    public function Eliminar($semana){
+        Auth::user()->profile == 1? :abort(403,'Forbidden');
+        $Registro = new registro;
+        $Registros = $Registro->GetReportByWeek($semana);
         return view('monitoreo.eliminar',[
-            'level' => userlevels::find(Auth::user()->profile)
+            'level' => userlevels::find(Auth::user()->profile),
+            'Registros' => $Registros
         ]);
     }
     public function ResultadosBacteriologicos(){
