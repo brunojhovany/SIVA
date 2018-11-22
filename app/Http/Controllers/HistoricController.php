@@ -29,8 +29,7 @@ class HistoricController extends Controller
 
     public function HistoricQuery(Request $request) {
         $R = new registro;
-        $week = $R->GetReportByWeek($request);
-        // dd($week);
+        $week = $R->GetReportByWeek($request->yearwithweek);
         return response()->json([
             'html' => view('configuracion.view_list_historic',compact('week'))->render(),
         ]);
