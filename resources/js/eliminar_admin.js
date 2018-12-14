@@ -5,43 +5,45 @@ $.ajaxSetup({
     }
 });
 $(document).ready(function () {
-    $('#formmodificar').on('submit', function (ev) {
+    $("#range_historic").on("submit", function(ev) {
         ev.preventDefault();
-        let semana = $('#semanainput').val();
+        let semana = $("#week_select").val();
         let year = new Date();
         year = year.getFullYear();
-        $('.renderspace').html(loader.Indeterminate);
         window.location.href = `/monitoreo/eliminar/${year}${semana}`;
     });
-    $("#modificarregistroForm").on("submit", function (ev) {
-        ev.preventDefault();
-        $.ajax({
-            type: "POST",
-            url: "/monitoreo/modificar/admin/habilitarreg",
-            data: new FormData(this),
-            contentType: false,
-            cache: false,
-            processData: false,
-            timeout: 60000,
-            success: function (data) {
-                M.toast({
-                    html: `${data.message}`,
-                    classes: "rounded teal lighten-2"
-                });
-                document.getElementById("submitMod").style.display = "none";
-                setTimeout(() => {
-                    window.location.reload(true);
-                }, 2000);
-            },
-            error: function (data) {
-                M.toast({
-                    html: `Algo salió mal 🤷👾`,
-                    classes: "rounded red"
-                });
-            }
-        });
-    });
 });
+function deleteregistros(idregistro) {
+    Swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                type: "DELETE",
+                url: `/admin/monitoreo/eliminar/${idregistro}`
+            })
+                .done(response => {
+                    Swal(
+                        'Eliminado',
+                        `Registro eliminado con éxito`,
+                        'success'
+                    )
+                    setTimeout(() => {
+                        window.location.reload(true);
+                    }, 2000);
+                })
+                .catch(error => {
+                    M.toast({ html: "Algo salio mal", classes: "rounded red" });
+                });
+        }
+    });
+}
 document.addEventListener('DOMContentLoaded', () => {
     document.onchange = ev => {
         document.getElementById('submitMod').style.display = '';

@@ -40,6 +40,12 @@ class monitoreo extends Controller
             'Registros' => $Registros
         ]);
     }
+    public function EliminarRegistro($idregistro){
+        Auth::user()->profile == 1? :abort(403,'Forbidden');
+        $_registro = new registro;
+        dd($_registro->where('idregistro',"$idregistro")->delete());
+        
+    }
     public function ResultadosBacteriologicos(){
         return view('monitoreo.resultados_bacteriologicos',[
             'level' => userlevels::find(Auth::user()->profile)

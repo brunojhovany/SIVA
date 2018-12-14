@@ -6,43 +6,39 @@ $.ajaxSetup({
     }
 });
 $(document).ready(function () {
-    $('#formmodificar').on('submit', function (ev) {
+    $("#range_historic").on("submit", function (ev) {
         ev.preventDefault();
-        var semana = $('#semanainput').val();
+        var semana = $("#week_select").val();
         var year = new Date();
         year = year.getFullYear();
-        $('.renderspace').html(loader.Indeterminate);
         window.location.href = '/monitoreo/eliminar/' + year + semana;
     });
-    $("#modificarregistroForm").on("submit", function (ev) {
-        ev.preventDefault();
-        $.ajax({
-            type: "POST",
-            url: "/monitoreo/modificar/admin/habilitarreg",
-            data: new FormData(this),
-            contentType: false,
-            cache: false,
-            processData: false,
-            timeout: 60000,
-            success: function success(data) {
-                M.toast({
-                    html: '' + data.message,
-                    classes: "rounded teal lighten-2"
-                });
-                document.getElementById("submitMod").style.display = "none";
+});
+function deleteregistros(idregistro) {
+    Swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then(function (result) {
+        if (result.value) {
+            $.ajax({
+                type: "DELETE",
+                url: '/admin/monitoreo/eliminar/' + idregistro
+            }).done(function (response) {
+                Swal('Eliminado', 'Registro eliminado con \xE9xito', 'success');
                 setTimeout(function () {
                     window.location.reload(true);
                 }, 2000);
-            },
-            error: function error(data) {
-                M.toast({
-                    html: 'Algo sali\xF3 mal \uD83E\uDD37\uD83D\uDC7E',
-                    classes: "rounded red"
-                });
-            }
-        });
+            }).catch(function (error) {
+                M.toast({ html: "Algo salio mal", classes: "rounded red" });
+            });
+        }
     });
-});
+}
 document.addEventListener('DOMContentLoaded', function () {
     document.onchange = function (ev) {
         document.getElementById('submitMod').style.display = '';
