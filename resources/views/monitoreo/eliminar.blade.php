@@ -18,7 +18,7 @@
 	</form>
 </div>
 @unless($Registros->count()>0)
-    <h1 class="center">Sin registros para habilitar</h1>
+    <h1 class="center">Sin registros para eliminar</h1>
 @else
 <div class="renderspace">
 <div class="container">
