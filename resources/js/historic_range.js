@@ -8,15 +8,14 @@ $(document).ready(ev=>{
 	$("#range_historic").on("submit", function(ev) {
         ev.preventDefault();
         $.ajax({
-            type: 'POST',
+            type: "POST",
             url: "/consulta/historial",
             dateType: "json",
             data: {
-                year_select: $("#year_select").val(),
-                week_select: $("#week_select").val()
+                yearwithweek: $("#year_select").val()+$("#week_select").val()
             },
-            success: function(data){
-                $('#renderspace').html(data.html);
+            success: function(data) {
+                $("#renderspace").html(data.html);
             },
             error: function(error) {
                 swal({
@@ -24,7 +23,7 @@ $(document).ready(ev=>{
                     title: "Oops...",
                     text: `Something went wrong! ${
                         error.responseJSON.message
-                        }`
+                    }`
                 });
             }
         });

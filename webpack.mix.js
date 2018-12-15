@@ -31,4 +31,5 @@ mix.js('resources/assets/js/app.js', 'public/js')
 .babel('resources/js/delete_handbooks.js', 'public/js/delete_handbooks.js')
 .babel('resources/js/morethanonce.js','public/js/morethanonce.js')
 .babel('resources/js/historic_range.js', 'public/js/historic_range.js')
-.babel('resources/js/modificar_admin.js', 'public/js/modificar_admin.js');
+.babel('resources/js/modificar_admin.js', 'public/js/modificar_admin.js')
+.babel('resources/js/eliminar_admin.js', 'public/js/eliminar_admin.js');
