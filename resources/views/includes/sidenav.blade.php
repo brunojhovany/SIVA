@@ -31,7 +31,9 @@
             @else
                 href="/monitoreo/modificar"
             @endif>Modificar</a></li>
-            <li><a href="/monitoreo/eliminar">Eliminar</a></li>
+            @if (auth::user()->profile==1)
+              <li><a href="#" onclick="eliminarFunc(); $('.sidenav').sidenav('close');">Eliminar</a></li>
+            @endif
             <li><a href="/monitoreo/resultadosbacteriologicos">Resultados bacteriologicos</a></li>
           </ul>
         </div>

@@ -19,5 +19,6 @@
     "/js/delete_handbooks.js": "/js/delete_handbooks.js",
     "/js/morethanonce.js": "/js/morethanonce.js",
     "/js/historic_range.js": "/js/historic_range.js",
-    "/js/modificar_admin.js": "/js/modificar_admin.js"
+    "/js/modificar_admin.js": "/js/modificar_admin.js",
+    "/js/eliminar_admin.js": "/js/eliminar_admin.js"
 }

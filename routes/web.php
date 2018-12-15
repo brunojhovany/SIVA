@@ -52,8 +52,8 @@ Auth::routes();
 
         Route::get('/monitoreo/modificar/{semana}','monitoreo@GetSemana');
         Route::post('/monitoreo/modificar/admin/habilitarreg','monitoreo@habilitarreg');
-        Route::get('/monitoreo/eliminar','monitoreo@Eliminar');
-        Route::delete('');
+        Route::get('/monitoreo/eliminar/{semana}','monitoreo@Eliminar');
+        Route::delete('/admin/monitoreo/eliminar/{idregistro}','monitoreo@EliminarRegistro');
         Route::get('monitoreo/resultadosbacteriologicos','monitoreo@ResultadosBacteriologicos');
         Route::get('/reporte/reporte_mensual_de_municipio','Reportes@reporte_mensual');
         

@@ -1,26 +1,23 @@
 @extends('layouts.app')
 @section('content')
-<div class="row">
-    <div class="col s12 m3"></div>
-    <div class="col s12 m6">
-        <div class="card">
-            <div class="card">
-                <div class="card-content">
-                    <form action="" method="post" id="formmodificar">
-                        <span class="card-title">Modificar registro</span>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">calendar_today</i>
-                                <input name="semana" id="semanainput" type="number" class="validate" required>
-                                <label for="semanainput">Semana</label>
-                            </div>
-                        </div>
-                        <button class="btn-floating btn-large waves-effect waves-light red right tooltipped" type="submit" data-tooltip="Búscar"><i class="material-icons">search</i></button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="center">
+	<form id="formmodificar" method="POST">
+		<span class="title"><h5>Modificar Registros</h5></span>
+		<div class="container">
+			<div class="row">
+				<div class="input-field col s5 m4">
+					
+				</div>
+				<div class="input-field col s5 m4">
+					<input name="semana" id="semanainput" type="number" class="validate">
+					<label for="semanainput">Semana</label>
+				</div>
+				<div class="col s1 m1">
+					<button class="btn-floating waves-effect waves-light red" type="submit" value="submit"><i class="material-icons">search</i></button>
+				</div>
+			</div>
+		</div>
+	</form>
 </div>
 @unless($Registros->count()>0)
     <h1 class="center">Sin registros para habilitar</h1>

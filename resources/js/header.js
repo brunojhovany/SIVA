@@ -53,19 +53,37 @@ function notifications() {
 }
 function modificarFunc(){
     swal({
-        title: '¿Que semana desea modificar?',
-        input: 'text',
+        title: "¿Que semana desea modificar?",
+        input: "text",
         inputAttributes: {
-            autocapitalize: 'off',
+            autocapitalize: "off"
         },
         showCancelButton: true,
-        confirmButtonText: 'Modificar',
-        cancelButtonText: 'Cancelar',
+        confirmButtonText: "Buscar registros",
+        cancelButtonText: "Cancelar",
         showLoaderOnConfirm: true,
-        preConfirm: (semana) => {
+        preConfirm: semana => {
             let date = new Date();
             window.location.href = `/monitoreo/modificar/${date.getFullYear()}${semana}`;
         },
         allowOutsideClick: () => !swal.isLoading()
-    })
+    });
 };
+function eliminarFunc(){
+    swal({
+        title: "¿De que semana desea eliminar algún registro?",
+        input: "text",
+        inputAttributes: {
+            autocapitalize: "off"
+        },
+        showCancelButton: true,
+        confirmButtonText: "Buscar registros",
+        cancelButtonText: "Cancelar",
+        showLoaderOnConfirm: true,
+        preConfirm: semana => {
+            let date = new Date();
+            window.location.href = `/monitoreo/eliminar/${date.getFullYear()}${semana}`;
+        },
+        allowOutsideClick: () => !swal.isLoading()
+    });
+}
