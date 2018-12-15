@@ -58,7 +58,7 @@
         <div class="collapsible-body">
           <ul>
             <li><a href="#!">Mensual jurisdiccional</a></li>
-            <li><a href="#!">Municipio</a></li>
+            <li><a href="/reporte/reporte_mensual_de_municipio">Municipio</a></li>
             <li><a href="#!">Localidad</a></li>
             <li><a href="#!">Concentrado semanal</a></li>
             <li><a href="#!">Monitoreo</a></li>
