@@ -87,6 +87,42 @@ function eliminarFunc() {
   });
 }
 
+function resultadosBacteriologicos() {
+  Swal({
+    title: "Resultados bacteriológicos",
+    input: "select",
+    allowOutsideClick: function allowOutsideClick() {
+      return !swal.isLoading();
+    },
+    inputOptions: {
+      1: "Enero",
+      2: "Febrero",
+      3: "Marzo",
+      4: "Abril",
+      5: "Mayo",
+      6: "Junio",
+      7: "Julio",
+      8: "Agosto",
+      9: "Septiembre",
+      10: "Octubre",
+      11: "Noviembre",
+      12: "Diciembre"
+    },
+    inputPlaceholder: "Seleccione un mes",
+    showCancelButton: true,
+    cancelButtonText: "Cancelar",
+    inputValidator: function inputValidator(value) {
+      return new Promise(function (resolve) {
+        resolve();
+      });
+    }
+  }).then(function (value) {
+    window.location.href = "monitoreo/resultadosbacteriologicos/".concat(value.value);
+  }).catch(function (error) {
+    return console.log(error);
+  });
+}
+
 $(document).ready(function (ev) {});
 
 function getView(url) {

@@ -116,6 +116,6 @@ $.ajax({
   swal({
     type: 'error',
     title: 'Oops...',
-    text: "Something went wrong! ".concat(error.responseJSON.message)
+    text: "Something went wrong x(! ".concat(error.responseJSON.message)
   });
 });
