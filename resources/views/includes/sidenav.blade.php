@@ -20,6 +20,7 @@
   </li>
   <li><a class="subheader">Navegación de la pagina</a></li>
   <li><a class="waves-effect" href="#!"><i class="material-icons">home</i>Inicio</a></li>
+  @if(Auth::user()->profile ==1 || Auth::user()->profile == 2)
   <li class="no-padding">
     <ul class="collapsible collapsible-accordion">
       <li>
@@ -53,6 +54,7 @@
       </li>
     </ul>
   </li>
+  @endif
   <li class="no-padding">
     <ul class="collapsible collapsible-accordion">
       <li>
