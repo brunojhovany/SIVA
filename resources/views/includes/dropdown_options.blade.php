@@ -1,10 +1,5 @@
 {{-- Opciones del header --}}
 <li>
-    <a href="#" class="tooltipped" data-position="bottom" data-delay="500" data-tooltip="Búsqueda">
-        <i class="material-icons">search</i>
-    </a>
-</li>
-<li>
     <a class="dropdown-trigger" href="#!" data-target="dropdownMenu">{{ Auth::user()->name }} &nbsp;<strong style='color:gray'>{{$level->name}}</strong>
         <i class="material-icons right">arrow_drop_down</i>
     </a> 

@@ -50,5 +50,6 @@ class monitoreo extends Controller
         return view('monitoreo.resultados_bacteriologicos',[
             'level' => userlevels::find(Auth::user()->profile)
         ]);
+        
     }
 }
