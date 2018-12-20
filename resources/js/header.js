@@ -107,7 +107,7 @@ function resultadosBacteriologicos(){
         }
     })
         .then(value => {
-            window.location.href = `monitoreo/resultadosbacteriologicos/${value.value}`;
+            window.location.href = `/monitoreo/resultadosbacteriologicos/${value.value}`;
         })
         .catch(error => console.log(error));
 }

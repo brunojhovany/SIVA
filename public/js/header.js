@@ -117,7 +117,7 @@ function resultadosBacteriologicos() {
       });
     }
   }).then(function (value) {
-    window.location.href = "monitoreo/resultadosbacteriologicos/".concat(value.value);
+    window.location.href = "/monitoreo/resultadosbacteriologicos/".concat(value.value);
   }).catch(function (error) {
     return console.log(error);
   });
