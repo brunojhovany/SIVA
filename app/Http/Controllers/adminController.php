@@ -17,7 +17,7 @@ class adminController extends Controller
     public function Index(){
         $levelUSR = Auth::user()->profile;
         $lv = userlevels::findOrFail($levelUSR);
-        if (Auth::user()->profile  == 1){
+        if (Auth::user()->profile == 1){
             return view('configuracion.admin',[
                 'level' => $lv
             ]);
@@ -29,7 +29,7 @@ class adminController extends Controller
         $usr = new User;
         $levelUSR = Auth::user()->profile;
         $lv = userlevels::findOrFail($levelUSR);
-        if (Auth::user()->profile  == 1){
+        if (Auth::user()->profile == 1){
             return view('configuracion.admon_users',[
                 'level' => $lv,
                 'users' => $usr->UsersDescription($request)
@@ -44,7 +44,10 @@ class adminController extends Controller
         $jurisdicciones = jurisdiccion::all();
         return view('modals.addusrmodal', compact('usrlevels', 'jurisdicciones'))->render();
     }
+
     public function NewUser (Request $request){
+        Auth::user()->profile == 1?'ok':abort(403,'Forbidden');
+
         $usr = new User;
         $usr->name = $request->Name;
         $usr->email = $request->Email;
@@ -63,6 +66,7 @@ class adminController extends Controller
     }
 
     public function EditUserForm(Request $request){
+        Auth::user()->profile == 1?'ok':abort(403,'Forbidden');
         $user = new User;
         $user = $user->UsersDescription($request);
         $usrlevels = userlevels::all();
@@ -71,6 +75,7 @@ class adminController extends Controller
     }
 
     public function UpdateUsers (Request $request){
+        Auth::user()->profile == 1?'ok':abort(403,'Forbidden');
         $userToUpdate = User::find($request->userId);
         $userToUpdate->name = $request->Name;
         $request->has('Password') && $request->Password? $userToUpdate->password = Hash::make($request->Password):'';
@@ -88,6 +93,8 @@ class adminController extends Controller
         }
     }
     public function DeleteUsers(Request $request){
+        Auth::user()->profile == 1?'ok':abort(403,'Forbidden');
+
         if(User::find($request->idUser)->delete()){
             return response()->json([
                 'message' => 'usurio elíminado'
@@ -102,6 +109,7 @@ class adminController extends Controller
 
 
     public function AdmonNotifictions(){
+        Auth::user()->profile == 1?'ok':abort(403,'Forbidden');
         $levelUSR = Auth::user()->profile;
         $lv = userlevels::findOrFail($levelUSR);
         if (Auth::user()->profile  == 1){
@@ -114,6 +122,7 @@ class adminController extends Controller
         abort(403,'Forbidden');
     }
     public function AdmonGuides(){
+        Auth::user()->profile == 1?'ok':abort(403,'Forbidden');
         $levelUSR = Auth::user()->profile;
         $lv = userlevels::findOrFail($levelUSR);
         $newFile = tbl_documentos::orderBy('nombre_archivo','asc')->get();
@@ -127,6 +136,7 @@ class adminController extends Controller
         abort(403,'Forbidden');
     }
     public function AdmonRegister(){
+        Auth::user()->profile == 1?'ok':abort(403,'Forbidden');
         $levelUSR = Auth::user()->profile;
         $lv = userlevels::findOrFail($levelUSR);
         if (Auth::user()->profile  == 1){
@@ -139,6 +149,7 @@ class adminController extends Controller
     }
 
     public function AdmonRegisterSave(Request $request){
+        Auth::user()->profile == 1?'ok':abort(403,'Forbidden');
         if(Auth::user()->profile  == 1){
             $claveLocalidad=DB::table('localidades')->select('clave')->where('idlocalidades','=',"$request->Localidad")->first();
             $claveLocalidad = $claveLocalidad->clave;
@@ -171,6 +182,7 @@ class adminController extends Controller
     }
 
     public function ListFiles() {
+        Auth::user()->profile == 1?'ok':abort(403,'Forbidden');
         $levelUSR = Auth::user()->profile;
         $lv = userlevels::findOrFail($levelUSR);
         $newFile = tbl_documentos::orderBy('nombre_archivo','asc')->get();
@@ -185,6 +197,7 @@ class adminController extends Controller
     }
 
     public function Upfiles() {
+        Auth::user()->profile == 1?'ok':abort(403,'Forbidden');
         //$newFile = new tbl_documentos;
         $levelUSR = Auth::user()->profile;
         $lv = userlevels::findOrFail($levelUSR);
@@ -221,6 +234,7 @@ class adminController extends Controller
 
 
     public function store_notifications(Request $request) {
+        Auth::user()->profile == 1?'ok':abort(403,'Forbidden');
         $newAviso = new avisos_informativos;
         $newAviso->descripcion_aviso = $request->descripcion_aviso;
         if($newAviso->save()){
@@ -235,12 +249,14 @@ class adminController extends Controller
         
     }
     public function DownloadGuide($filename){
+        Auth::user()->profile == 1?'ok':abort(403,'Forbidden');
         $pathToFile = public_path().'/storage/'.$filename;
         // dd($pathToFile);
         return response()->download($pathToFile);
     }
 
     public function DeleteGuide($idfile, $filename) {
+        Auth::user()->profile == 1?'ok':abort(403,'Forbidden');
         $file_path = public_path().'/storage/'.$filename;
         if(file_exists($file_path)){
             \File::delete($file_path);

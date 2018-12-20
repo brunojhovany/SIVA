@@ -29,8 +29,15 @@ class registro extends Model
         ->whereRaw("yearweek(f,1) = $yearwithweek")
         ->where('registro.status',1)->paginate(5);
     }
+
     public function ModificarAdmin($yearwithweek){
         return $this::select()->leftJoin('municipio as M','M.idmunicipio','registro.idmunicipio')->
         leftJoin('localidades as L','L.idlocalidades','registro.idlocalidades')->whereRaw("yearweek(f,1) = $yearwithweek")->where('registro.status',0)->where('registro.lapsed',0)->paginate(5);
+    }
+
+    public function ReporteMensualMunicipio(){
+        $query = $this::select('');
+        
+        return;
     }
 }

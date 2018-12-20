@@ -12,7 +12,6 @@
         <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
         @else
         @switch(Auth::user()->tipouser)
-        @case(5)
         @case(0)
           @include('includes.dropdown_options')
           @break

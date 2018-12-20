@@ -20,6 +20,7 @@
   </li>
   <li><a class="subheader">Navegación de la pagina</a></li>
   <li><a class="waves-effect" href="#!"><i class="material-icons">home</i>Inicio</a></li>
+  @if(Auth::user()->profile ==1 || Auth::user()->profile == 2)
   <li class="no-padding">
     <ul class="collapsible collapsible-accordion">
       <li>
@@ -53,6 +54,7 @@
       </li>
     </ul>
   </li>
+  @endif
   <li class="no-padding">
     <ul class="collapsible collapsible-accordion">
       <li>
@@ -61,7 +63,8 @@
           <ul>
             <li><a href="#!">Mensual jurisdiccional</a></li>
             <li><a href="/reporte/reporte_mensual_de_municipio">Municipio</a></li>
-            <li><a href="#!">Localidad</a></li>
+            <li><a href="/reporte/reporte_por_localidad">Localidad</a></li>
+            <li><a href="">Localidad</a></li>
             <li><a href="#!">Concentrado semanal</a></li>
             <li><a href="#!">Monitoreo</a></li>
           </ul>

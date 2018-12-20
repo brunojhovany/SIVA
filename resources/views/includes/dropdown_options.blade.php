@@ -6,6 +6,7 @@
 </li>
 
 <ul id="dropdownMenu" class="dropdown-content">
+  @if(Auth::user()->profile ==1 || Auth::user()->profile == 2)
   <li>
     <a href="" style="color:#01579b" id="notificationsbuttons">
       <i class="material-icons">notifications</i>Notificaciones
@@ -13,7 +14,10 @@
     </a>
   </li> 
   <li class="divider"></li>
-  <li><a href="/admin/configuracion" style="color:#01579b"><i class="material-icons">settings</i>Configuración</a></li>
+  <li>
+    <a href="/admin/configuracion" style="color:#01579b"><i class="material-icons">settings</i>Configuración</a>
+  </li>
+  @endif
   <li>
     <a href="#!" style="color:#01579b">
       <i class="material-icons">info_outline</i>Acerca de</a>

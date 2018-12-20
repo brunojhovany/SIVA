@@ -56,6 +56,7 @@ Auth::routes();
         Route::delete('/admin/monitoreo/eliminar/{idregistro}','monitoreo@EliminarRegistro');
         Route::get('monitoreo/resultadosbacteriologicos/{mes}','monitoreo@ResultadosBacteriologicos');
         Route::get('/reporte/reporte_mensual_de_municipio','Reportes@reporte_mensual');
+        Route::get('/reporte/reporte_por_localidad','Reportes@reporte_localidad');
         
     });
     
