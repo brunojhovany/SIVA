@@ -46,10 +46,10 @@ class monitoreo extends Controller
         dd($_registro->where('idregistro',"$idregistro")->delete());
         
     }
-    public function ResultadosBacteriologicos($mes){
-        dd($mes);
+    public function ResultadosBacteriologicos($Month){
         return view('monitoreo.resultados_bacteriologicos',[
-            'level' => userlevels::find(Auth::user()->profile)
+            'level' => userlevels::find(Auth::user()->profile),
+            'Registros' => registro::ResultadosBactereologicos($Month)
         ]);
         
     }
