@@ -156,7 +156,7 @@ $.ajax({
         swal({
             type: 'error',
             title: 'Oops...',
-            text: `Something went wrong! ${error.responseJSON.message}`,
+            text: `Something went wrong x(! ${error.responseJSON.message}`,
         })
     }
 );

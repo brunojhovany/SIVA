@@ -10,16 +10,14 @@ use Illuminate\Support\Facades\Auth;
 class puntosfijos extends Controller
 {
     public function solounaves(){
-        $levelUSR = Auth::user()->profile;
-        $lv = userlevels::find($levelUSR);
-        $query = DB::table('municipio')->select('idmunicipio','nombreM')->get();
         return view('puntosfijos.onlyone',[
-            'level' => $lv,
+            'level' => userlevels::find(Auth::user()->profile),
             'Municipios' => []
         ]);
     }
     public function Municipios(Request $request){
-        $query = DB::table('municipio')->select('idmunicipio','nombreM')->get();
+        $query = DB::table('municipio')->select('idmunicipio','nombreM');
+        Auth::user()->profile == 2 ? $query = $query->where('idjurisdiccion',Auth::user()->jurisdiccion)->get() : $query = $query->get();
         return response()->json([
             'Municipios' => view('selects.municipios',compact('query'))->render()
         ]);
@@ -65,7 +63,7 @@ class puntosfijos extends Controller
         $lv = userlevels::find($levelUSR);
         return view('puntosfijos.morethanonce',[
             'level' => $lv,
-            'Registros' => $Registro->MoreThanOnce()
+            'Registros' => $Registro->MoreThanOnce(Auth::user())
         ]);
     }
     public function SaveMoreThanOnce(Request $request){

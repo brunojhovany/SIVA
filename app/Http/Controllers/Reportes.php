@@ -14,4 +14,10 @@ class Reportes extends Controller
     ]);
    }
 
+   public function reporte_localidad(){
+      return view('reporte.reporte_por_localidad.reporte_localidad',[
+         'level' => userlevels::find(Auth::user()->profile)
+      ]);
+   }
+
 }
