@@ -56,9 +56,10 @@ function modificarFunc() {
     confirmButtonText: "Buscar registros",
     cancelButtonText: "Cancelar",
     showLoaderOnConfirm: true,
-    preConfirm: function preConfirm(semana) {
+    preConfirm: function preConfirm(week) {
+      week.length < 2 ? week = "0" + week : '';
       var date = new Date();
-      window.location.href = "/monitoreo/modificar/".concat(date.getFullYear()).concat(semana);
+      window.location.href = "/monitoreo/modificar/".concat(date.getFullYear()).concat(week);
     },
     allowOutsideClick: function allowOutsideClick() {
       return !swal.isLoading();
@@ -77,9 +78,10 @@ function eliminarFunc() {
     confirmButtonText: "Buscar registros",
     cancelButtonText: "Cancelar",
     showLoaderOnConfirm: true,
-    preConfirm: function preConfirm(semana) {
+    preConfirm: function preConfirm(week) {
+      week.length < 2 ? week = "0" + week : '';
       var date = new Date();
-      window.location.href = "/monitoreo/eliminar/".concat(date.getFullYear()).concat(semana);
+      window.location.href = "/monitoreo/eliminar/".concat(date.getFullYear()).concat(week);
     },
     allowOutsideClick: function allowOutsideClick() {
       return !swal.isLoading();

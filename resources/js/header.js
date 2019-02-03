@@ -52,9 +52,10 @@ function modificarFunc() {
         confirmButtonText: "Buscar registros",
         cancelButtonText: "Cancelar",
         showLoaderOnConfirm: true,
-        preConfirm: semana => {
+        preConfirm: week => {
+            week.length < 2 ? week = "0" + week : '';
             let date = new Date();
-            window.location.href = `/monitoreo/modificar/${date.getFullYear()}${semana}`;
+            window.location.href = `/monitoreo/modificar/${date.getFullYear()}${week}`;
         },
         allowOutsideClick: () => !swal.isLoading()
     });
@@ -70,9 +71,10 @@ function eliminarFunc() {
         confirmButtonText: "Buscar registros",
         cancelButtonText: "Cancelar",
         showLoaderOnConfirm: true,
-        preConfirm: semana => {
+        preConfirm: week => {
+            week.length < 2 ? week = "0" + week : '';
             let date = new Date();
-            window.location.href = `/monitoreo/eliminar/${date.getFullYear()}${semana}`;
+            window.location.href = `/monitoreo/eliminar/${date.getFullYear()}${week}`;
         },
         allowOutsideClick: () => !swal.isLoading()
     });

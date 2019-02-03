@@ -8,11 +8,12 @@ $.ajaxSetup({
 $(document).ready(function () {
   $('#formmodificar').on('submit', function (ev) {
     ev.preventDefault();
-    var semana = $('#semanainput').val();
+    var week = $('#semanainput').val();
+    week.length < 2 ? week = "0" + week : '';
     var year = new Date();
     year = year.getFullYear();
     $('.renderspace').html(loader.Indeterminate);
-    window.location.href = "/monitoreo/modificar/".concat(year).concat(semana);
+    window.location.href = "/monitoreo/modificar/".concat(year).concat(week);
   });
   $("#modificarregistroForm").on("submit", function (ev) {
     ev.preventDefault();
