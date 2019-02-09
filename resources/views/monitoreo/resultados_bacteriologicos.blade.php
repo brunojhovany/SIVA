@@ -59,7 +59,19 @@
 		<h1 class="center">Sin registros en el mes</h1>
 		@else @foreach ($Registros as $R)
 		<tr>
-			<td>{{$R->folio}}</td>
+            <td>{{$R->folio}}</td>
+            <td>{{$R->semana}}</td>
+            <td>{{$R->folio}}</td>
+            <td>{{$R->nombreM}}</td>
+            <td>{{$R->nombreL}}</td>
+            <td>{{$R->domicilio}}</td>
+            <td>{{$R->fecha}}</td>
+            @if ($R->sin_servicio == 1)
+                <td>Si</td>
+            @else
+            <td>No</td>
+            @endif
+            <td></td>
 		</tr>
 		@endforeach 
 		@endunless

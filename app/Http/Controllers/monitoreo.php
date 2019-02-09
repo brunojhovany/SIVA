@@ -47,6 +47,7 @@ class monitoreo extends Controller
         
     }
     public function ResultadosBacteriologicos($Month){
+        // dd(registro::ResultadosBactereologicos($Month));
         return view('monitoreo.resultados_bacteriologicos',[
             'level' => userlevels::find(Auth::user()->profile),
             'Registros' => registro::ResultadosBactereologicos($Month)

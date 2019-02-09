@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use DB;
+use DateTime;
 use App\registro;
 use App\userlevels;
 use Illuminate\Http\Request;
@@ -39,6 +40,7 @@ class puntosfijos extends Controller
             'fecha' => $request->Fecha,
             'hora' => $request->Hora,
             'valor' => $request->Valor,
+            'semana' => $this->returnweek($request->Fecha),
             'sin_servicio' => $request->has('Servicio')? 1 : 0,
             'causas' => $request->Causas,
             'acciones' => $request->Acciones,
@@ -72,6 +74,7 @@ class puntosfijos extends Controller
                 'fecha' => $R['Fecha'],
                 'hora' => $R['Hora'],
                 'valor' => $R['Valor'],
+                'semana' => $this->returnweek($R['Fecha']),
                 'sin_servicio' => array_key_exists('SinServicio',$R) ? 1 : 0,
                 'causas' => $R['Causas'],
                 'acciones' => $R['Acciones'],
@@ -84,5 +87,10 @@ class puntosfijos extends Controller
         return response()->json([
             'message' => 'Se guardaron los registros'
         ]);
+    }
+    public function returnweek ($_date) {
+        $date = new DateTime($_date);
+        $week = $date->format("W");
+        return $week;
     }
 }
