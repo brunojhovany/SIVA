@@ -59,7 +59,8 @@
 		<h1 class="center">Sin registros en el mes</h1>
 		@else @foreach ($Registros as $R)
 		<tr>
-            <td>{{$R->folio}}</td>
+            <td style="display:none;"><input name="{{$R->idregistro}}[idregistro]" placeholder="{{$R->idregistro}}" type="text" disabled></td>
+            <td>{{$R->idregistro}}</td>
             <td>{{$R->semana}}</td>
             <td>{{$R->folio}}</td>
             <td>{{$R->nombreM}}</td>
@@ -71,12 +72,20 @@
             @else
             <td>No</td>
             @endif
-            <td></td>
-		</tr>
+            <td>
+                <p>
+                    <label>
+                        <input name="{{$R->idregistro}}[MuestraBacteriologica]" type="checkbox" class="filled-in" />
+                            <span></span>
+                        </label>
+                    </p>
+                </td>
+		    </tr>
 		@endforeach 
 		@endunless
 	</tbody>
 </table>
+{{ $Registros->links()}}
 </div>
 <script src="{{ asset('js/muestras.js') }}"></script>
 @endsection
