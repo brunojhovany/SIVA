@@ -47,11 +47,21 @@ class monitoreo extends Controller
         
     }
     public function ResultadosBacteriologicos($Month){
-        // dd(registro::ResultadosBactereologicos($Month));
         return view('monitoreo.resultados_bacteriologicos',[
             'level' => userlevels::find(Auth::user()->profile),
             'Registros' => registro::ResultadosBactereologicos($Month)
         ]);
         
+    }
+    function RBSaveChanges(Request $request){
+        foreach ($request->all() as $R) {
+            $toUpdate =[
+                'coliforme' => $R['MuestraBacteriologica']
+            ];
+            registro::where('idregistro',$R['idregistro'])->update($toUpdate);
+        }
+        return response()->json([
+            'message' => 'Se guardaron los registros'
+        ]);
     }
 }

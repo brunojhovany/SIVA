@@ -41,6 +41,6 @@ class registro extends Model
         ->leftJoin(DB::raw('(SELECT id,name from users) as U'),'U.id','registro.user_id')
         ->whereRaw("MONTH(fecha) = $Month")
         ->whereRaw('YEAR(fecha) = year(curdate())')
-        ->where('registro.status',1)->paginate(5);
+        ->where('registro.status',1)->paginate(4);
     }
 }

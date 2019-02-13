@@ -39,53 +39,86 @@
     </form>
 </div>
 <div>
-	<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Semana</th>
-            <th>Folio</th>
-            <th>Municipio</th>
-            <th>Localidad</th>
-            <th>Domicilio</th>
-            <th>Fecha</th>
-            <th>Sin Servicio</th>
-            <th>Con presencia de coliformes</th>
-            <th></th>
-        </tr>
-	</thead>
-	<tbody>
-		@unless($Registros->count()>0)
-		<h1 class="center">Sin registros en el mes</h1>
-		@else @foreach ($Registros as $R)
-		<tr>
-            <td style="display:none;"><input name="{{$R->idregistro}}[idregistro]" placeholder="{{$R->idregistro}}" type="text" disabled></td>
-            <td>{{$R->idregistro}}</td>
-            <td>{{$R->semana}}</td>
-            <td>{{$R->folio}}</td>
-            <td>{{$R->nombreM}}</td>
-            <td>{{$R->nombreL}}</td>
-            <td>{{$R->domicilio}}</td>
-            <td>{{$R->fecha}}</td>
-            @if ($R->sin_servicio == 1)
-                <td>Si</td>
-            @else
-            <td>No</td>
-            @endif
-            <td>
-                <p>
-                    <label>
-                        <input name="{{$R->idregistro}}[MuestraBacteriologica]" type="checkbox" class="filled-in" />
-                            <span></span>
-                        </label>
-                    </p>
-                </td>
-		    </tr>
-		@endforeach 
-		@endunless
-	</tbody>
-</table>
-{{ $Registros->links()}}
+    <form method="POST" id="formTableResultadosBact">
+        <table>
+            <thead>
+                <tr><th></th>
+                    <th>ID</th>
+                    <th>Semana</th>
+                    <th>Folio</th>
+                    <th>Municipio</th>
+                    <th>Localidad</th>
+                    <th>Domicilio</th>
+                    <th>Fecha</th>
+                    <th>Sin Servicio</th>
+                    <th>Con presencia de coliformes</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @unless($Registros->count()>0)
+                <h1 class="center">Sin registros en el mes</h1>
+                @else @foreach ($Registros as $R)
+                <tr>
+                    <td >
+                        <input
+                            name="{{$R->idregistro}}[idregistro]"
+                            placeholder="{{$R->idregistro}}"
+                            value="{{$R->idregistro}}"
+                            type="text"
+                            style="display:none;"
+                        />
+                    </td>
+                    <td>{{$R->idregistro}}</td>
+                    <td>{{$R->semana}}</td>
+                    <td>{{$R->folio}}</td>
+                    <td>{{$R->nombreM}}</td>
+                    <td>{{$R->nombreL}}</td>
+                    <td>{{$R->domicilio}}</td>
+                    <td>{{$R->fecha}}</td>
+                    @if ($R->sin_servicio == 1)
+                    <td>Si</td>
+                    @else
+                    <td>No</td>
+                    @endif
+                    <td>
+                        @if ($R->coliforme == 1)
+                        <p>
+                            <label>
+                                <input name="{{$R->idregistro}}[MuestraBacteriologica]" value="1" type="radio" checked />
+                                <span>Si</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input name="{{$R->idregistro}}[MuestraBacteriologica]" value="0" type="radio" />
+                                <span>No</span>
+                            </label>
+                        </p>
+                        @else
+                        <p>
+                            <label>
+                                <input name="{{$R->idregistro}}[MuestraBacteriologica]" value="1" type="radio" />
+                                <span>Si</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input name="{{$R->idregistro}}[MuestraBacteriologica]" value="0" type="radio" checked />
+                                <span>No</span>
+                            </label>
+                        </p>
+                        @endif
+                    </td>
+                </tr>
+                @endforeach @endunless
+            </tbody>
+        </table>
+        <div class="container">
+            <button id="submitResultsBactBtn" type="submit" class="btn-floating btn-large waves-effect waves-light red right tooltipped" data-position="bottom" data-tooltip="Guardar" style="display:none;"><i class="material-icons">save_alt</i></button>
+        </div>
+    </form>
+    {{ $Registros->links()}}
 </div>
 <script src="{{ asset('js/muestras.js') }}"></script>
 @endsection
